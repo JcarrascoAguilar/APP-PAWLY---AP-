@@ -9,7 +9,7 @@ type Modo = "login" | "registro";
 
 export const Route = createFileRoute("/auth")({
   validateSearch: (search: Record<string, unknown>): { modo: Modo } => ({
-    modo: search.modo === "registro" ? "registro" : "login",
+    modo: search['modo'] === "registro" ? "registro" : "login",
   }),
   head: () => ({
     meta: [
@@ -51,7 +51,7 @@ function Auth() {
       return;
     }
     signIn({
-      name: form.name.trim().slice(0, 60) || form.email.split("@")[0],
+      name: form.name.trim().slice(0, 60) || form.email.split("@")[0] || "Usuario",
       email: form.email.trim().slice(0, 120),
       phone: form.phone.trim().slice(0, 30),
     });

@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AuthRouteImport } from './routes/auth'
 import { Route as BienvenidaRouteImport } from './routes/bienvenida'
 import { Route as ExplorarRouteImport } from './routes/explorar'
 import { Route as MapaRouteImport } from './routes/mapa'
@@ -21,6 +22,11 @@ import { Route as MascotaIdRouteImport } from './routes/mascota.$id'
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthRoute = AuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BienvenidaRoute = BienvenidaRouteImport.update({
@@ -61,6 +67,7 @@ const MascotaIdRoute = MascotaIdRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/auth': typeof AuthRoute
   '/bienvenida': typeof BienvenidaRoute
   '/explorar': typeof ExplorarRoute
   '/mapa': typeof MapaRoute
@@ -71,6 +78,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/auth': typeof AuthRoute
   '/bienvenida': typeof BienvenidaRoute
   '/explorar': typeof ExplorarRoute
   '/mapa': typeof MapaRoute
@@ -82,6 +90,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/auth': typeof AuthRoute
   '/bienvenida': typeof BienvenidaRoute
   '/explorar': typeof ExplorarRoute
   '/mapa': typeof MapaRoute
@@ -94,6 +103,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/auth'
     | '/bienvenida'
     | '/explorar'
     | '/mapa'
@@ -104,6 +114,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/auth'
     | '/bienvenida'
     | '/explorar'
     | '/mapa'
@@ -114,6 +125,7 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/auth'
     | '/bienvenida'
     | '/explorar'
     | '/mapa'
@@ -125,6 +137,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AuthRoute: typeof AuthRoute
   BienvenidaRoute: typeof BienvenidaRoute
   ExplorarRoute: typeof ExplorarRoute
   MapaRoute: typeof MapaRoute
@@ -141,6 +154,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/bienvenida': {
@@ -197,6 +217,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AuthRoute: AuthRoute,
   BienvenidaRoute: BienvenidaRoute,
   ExplorarRoute: ExplorarRoute,
   MapaRoute: MapaRoute,
