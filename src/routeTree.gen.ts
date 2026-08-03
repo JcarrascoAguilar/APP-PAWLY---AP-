@@ -21,6 +21,7 @@ import { Route as PublicarRouteImport } from './routes/publicar'
 import { Route as ReencuentrosRouteImport } from './routes/reencuentros'
 import { Route as MascotaIdRouteImport } from './routes/mascota.$id'
 import { Route as PublicarIndexRouteImport } from './routes/publicar.index'
+import { Route as PublicarPerdidaRouteImport } from './routes/publicar.perdida'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -82,6 +83,11 @@ const PublicarIndexRoute = PublicarIndexRouteImport.update({
   path: '/',
   getParentRoute: () => PublicarRoute,
 } as any)
+const PublicarPerdidaRoute = PublicarPerdidaRouteImport.update({
+  id: '/perdida',
+  path: '/perdida',
+  getParentRoute: () => PublicarRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -95,6 +101,7 @@ export interface FileRoutesByFullPath {
   '/publicar': typeof PublicarRouteWithChildren
   '/reencuentros': typeof ReencuentrosRoute
   '/mascota/$id': typeof MascotaIdRoute
+  '/publicar/perdida': typeof PublicarPerdidaRoute
   '/publicar/': typeof PublicarIndexRoute
 }
 export interface FileRoutesByTo {
@@ -108,6 +115,7 @@ export interface FileRoutesByTo {
   '/perfil': typeof PerfilRoute
   '/reencuentros': typeof ReencuentrosRoute
   '/mascota/$id': typeof MascotaIdRoute
+  '/publicar/perdida': typeof PublicarPerdidaRoute
   '/publicar': typeof PublicarIndexRoute
 }
 export interface FileRoutesById {
@@ -123,6 +131,7 @@ export interface FileRoutesById {
   '/publicar': typeof PublicarRouteWithChildren
   '/reencuentros': typeof ReencuentrosRoute
   '/mascota/$id': typeof MascotaIdRoute
+  '/publicar/perdida': typeof PublicarPerdidaRoute
   '/publicar/': typeof PublicarIndexRoute
 }
 export interface FileRouteTypes {
@@ -139,6 +148,7 @@ export interface FileRouteTypes {
     | '/publicar'
     | '/reencuentros'
     | '/mascota/$id'
+    | '/publicar/perdida'
     | '/publicar/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -152,6 +162,7 @@ export interface FileRouteTypes {
     | '/perfil'
     | '/reencuentros'
     | '/mascota/$id'
+    | '/publicar/perdida'
     | '/publicar'
   id:
     | '__root__'
@@ -166,6 +177,7 @@ export interface FileRouteTypes {
     | '/publicar'
     | '/reencuentros'
     | '/mascota/$id'
+    | '/publicar/perdida'
     | '/publicar/'
   fileRoutesById: FileRoutesById
 }
@@ -269,14 +281,23 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PublicarIndexRouteImport
       parentRoute: typeof PublicarRoute
     }
+    '/publicar/perdida': {
+      id: '/publicar/perdida'
+      path: '/perdida'
+      fullPath: '/publicar/perdida'
+      preLoaderRoute: typeof PublicarPerdidaRouteImport
+      parentRoute: typeof PublicarRoute
+    }
   }
 }
 
 interface PublicarRouteChildren {
+  PublicarPerdidaRoute: typeof PublicarPerdidaRoute
   PublicarIndexRoute: typeof PublicarIndexRoute
 }
 
 const PublicarRouteChildren: PublicarRouteChildren = {
+  PublicarPerdidaRoute: PublicarPerdidaRoute,
   PublicarIndexRoute: PublicarIndexRoute,
 }
 
