@@ -1,11 +1,13 @@
 import { Link, useRouterState } from "@tanstack/react-router";
-import { Compass, Home, MapPin, PawPrint, PlusCircle, User } from "lucide-react";
+import { Compass, Home, MapPin, Moon, PlusCircle, Sun, User } from "lucide-react";
 import type { ReactNode } from "react";
 import { cn } from "@/lib/utils";
+import { useTheme } from "@/lib/petnova";
+import logo from "@/assets/petnova-logo.png";
 
 const tabs = [
   { to: "/", label: "Inicio", icon: Home },
-  { to: "/explorar", label: "Explorar", icon: Compass },
+  { to: "/explorar", label: "Buscar", icon: Compass },
   { to: "/publicar", label: "Publicar", icon: PlusCircle },
   { to: "/mapa", label: "Mapa", icon: MapPin },
   { to: "/perfil", label: "Perfil", icon: User },
@@ -13,25 +15,34 @@ const tabs = [
 
 export function AppShell({ children }: { children: ReactNode }) {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
+  const { dark, toggle } = useTheme();
 
   return (
     <div className="min-h-screen bg-background">
       <header className="sticky top-0 z-20 border-b border-border/60 bg-background/85 backdrop-blur">
-        <div className="mx-auto flex h-16 max-w-3xl items-center justify-between px-4">
-          <Link to="/" className="flex items-center gap-2">
-            <span className="flex size-9 items-center justify-center rounded-2xl bg-primary text-primary-foreground">
-              <PawPrint className="size-5" />
-            </span>
-            <span className="text-lg font-extrabold tracking-tight text-foreground">
+        <div className="mx-auto grid h-16 max-w-3xl grid-cols-[minmax(0,1fr)_auto] items-center gap-3 px-4">
+          <Link to="/" className="flex min-w-0 items-center gap-2">
+            <img src={logo} alt="Logo PETNOVA" width={40} height={40} className="size-9 shrink-0" />
+            <span className="truncate text-lg font-extrabold tracking-tight text-foreground">
               PET<span className="text-accent">NOVA</span>
             </span>
           </Link>
-          <Link
-            to="/mis-publicaciones"
-            className="rounded-full border border-border px-3 py-1.5 text-xs font-semibold text-muted-foreground transition-colors hover:text-foreground"
-          >
-            Mis publicaciones
-          </Link>
+          <div className="flex shrink-0 items-center gap-2">
+            <Link
+              to="/reencuentros"
+              className="rounded-full border border-border px-3 py-1.5 text-xs font-semibold text-muted-foreground transition-colors hover:text-foreground"
+            >
+              Reencuentros
+            </Link>
+            <button
+              type="button"
+              onClick={toggle}
+              aria-label="Cambiar tema"
+              className="flex size-9 items-center justify-center rounded-full border border-border text-muted-foreground transition-colors hover:text-foreground"
+            >
+              {dark ? <Sun className="size-4" /> : <Moon className="size-4" />}
+            </button>
+          </div>
         </div>
       </header>
 
