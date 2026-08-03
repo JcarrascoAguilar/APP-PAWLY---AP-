@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ExplorarRouteImport } from './routes/explorar'
 import { Route as MapaRouteImport } from './routes/mapa'
+import { Route as MisPublicacionesRouteImport } from './routes/mis-publicaciones'
 import { Route as PublicarRouteImport } from './routes/publicar'
 import { Route as MascotaIdRouteImport } from './routes/mascota.$id'
 
@@ -30,6 +31,11 @@ const MapaRoute = MapaRouteImport.update({
   path: '/mapa',
   getParentRoute: () => rootRouteImport,
 } as any)
+const MisPublicacionesRoute = MisPublicacionesRouteImport.update({
+  id: '/mis-publicaciones',
+  path: '/mis-publicaciones',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PublicarRoute = PublicarRouteImport.update({
   id: '/publicar',
   path: '/publicar',
@@ -45,6 +51,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/explorar': typeof ExplorarRoute
   '/mapa': typeof MapaRoute
+  '/mis-publicaciones': typeof MisPublicacionesRoute
   '/publicar': typeof PublicarRoute
   '/mascota/$id': typeof MascotaIdRoute
 }
@@ -52,6 +59,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/explorar': typeof ExplorarRoute
   '/mapa': typeof MapaRoute
+  '/mis-publicaciones': typeof MisPublicacionesRoute
   '/publicar': typeof PublicarRoute
   '/mascota/$id': typeof MascotaIdRoute
 }
@@ -60,21 +68,42 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/explorar': typeof ExplorarRoute
   '/mapa': typeof MapaRoute
+  '/mis-publicaciones': typeof MisPublicacionesRoute
   '/publicar': typeof PublicarRoute
   '/mascota/$id': typeof MascotaIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/explorar' | '/mapa' | '/publicar' | '/mascota/$id'
+  fullPaths:
+    | '/'
+    | '/explorar'
+    | '/mapa'
+    | '/mis-publicaciones'
+    | '/publicar'
+    | '/mascota/$id'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/explorar' | '/mapa' | '/publicar' | '/mascota/$id'
-  id: '__root__' | '/' | '/explorar' | '/mapa' | '/publicar' | '/mascota/$id'
+  to:
+    | '/'
+    | '/explorar'
+    | '/mapa'
+    | '/mis-publicaciones'
+    | '/publicar'
+    | '/mascota/$id'
+  id:
+    | '__root__'
+    | '/'
+    | '/explorar'
+    | '/mapa'
+    | '/mis-publicaciones'
+    | '/publicar'
+    | '/mascota/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ExplorarRoute: typeof ExplorarRoute
   MapaRoute: typeof MapaRoute
+  MisPublicacionesRoute: typeof MisPublicacionesRoute
   PublicarRoute: typeof PublicarRoute
   MascotaIdRoute: typeof MascotaIdRoute
 }
@@ -102,6 +131,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MapaRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/mis-publicaciones': {
+      id: '/mis-publicaciones'
+      path: '/mis-publicaciones'
+      fullPath: '/mis-publicaciones'
+      preLoaderRoute: typeof MisPublicacionesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/publicar': {
       id: '/publicar'
       path: '/publicar'
@@ -123,6 +159,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ExplorarRoute: ExplorarRoute,
   MapaRoute: MapaRoute,
+  MisPublicacionesRoute: MisPublicacionesRoute,
   PublicarRoute: PublicarRoute,
   MascotaIdRoute: MascotaIdRoute,
 }
