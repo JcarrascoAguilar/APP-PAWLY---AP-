@@ -10,33 +10,115 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ExplorarRouteImport } from './routes/explorar'
+import { Route as MapaRouteImport } from './routes/mapa'
+import { Route as MisPublicacionesRouteImport } from './routes/mis-publicaciones'
+import { Route as PerfilRouteImport } from './routes/perfil'
+import { Route as PublicarRouteImport } from './routes/publicar'
+import { Route as MascotaIdRouteImport } from './routes/mascota.$id'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ExplorarRoute = ExplorarRouteImport.update({
+  id: '/explorar',
+  path: '/explorar',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MapaRoute = MapaRouteImport.update({
+  id: '/mapa',
+  path: '/mapa',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MisPublicacionesRoute = MisPublicacionesRouteImport.update({
+  id: '/mis-publicaciones',
+  path: '/mis-publicaciones',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PerfilRoute = PerfilRouteImport.update({
+  id: '/perfil',
+  path: '/perfil',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PublicarRoute = PublicarRouteImport.update({
+  id: '/publicar',
+  path: '/publicar',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MascotaIdRoute = MascotaIdRouteImport.update({
+  id: '/mascota/$id',
+  path: '/mascota/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/explorar': typeof ExplorarRoute
+  '/mapa': typeof MapaRoute
+  '/mis-publicaciones': typeof MisPublicacionesRoute
+  '/perfil': typeof PerfilRoute
+  '/publicar': typeof PublicarRoute
+  '/mascota/$id': typeof MascotaIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/explorar': typeof ExplorarRoute
+  '/mapa': typeof MapaRoute
+  '/mis-publicaciones': typeof MisPublicacionesRoute
+  '/perfil': typeof PerfilRoute
+  '/publicar': typeof PublicarRoute
+  '/mascota/$id': typeof MascotaIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/explorar': typeof ExplorarRoute
+  '/mapa': typeof MapaRoute
+  '/mis-publicaciones': typeof MisPublicacionesRoute
+  '/perfil': typeof PerfilRoute
+  '/publicar': typeof PublicarRoute
+  '/mascota/$id': typeof MascotaIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/explorar'
+    | '/mapa'
+    | '/mis-publicaciones'
+    | '/perfil'
+    | '/publicar'
+    | '/mascota/$id'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/explorar'
+    | '/mapa'
+    | '/mis-publicaciones'
+    | '/perfil'
+    | '/publicar'
+    | '/mascota/$id'
+  id:
+    | '__root__'
+    | '/'
+    | '/explorar'
+    | '/mapa'
+    | '/mis-publicaciones'
+    | '/perfil'
+    | '/publicar'
+    | '/mascota/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ExplorarRoute: typeof ExplorarRoute
+  MapaRoute: typeof MapaRoute
+  MisPublicacionesRoute: typeof MisPublicacionesRoute
+  PerfilRoute: typeof PerfilRoute
+  PublicarRoute: typeof PublicarRoute
+  MascotaIdRoute: typeof MascotaIdRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,22 +130,60 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/explorar': {
+      id: '/explorar'
+      path: '/explorar'
+      fullPath: '/explorar'
+      preLoaderRoute: typeof ExplorarRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/mapa': {
+      id: '/mapa'
+      path: '/mapa'
+      fullPath: '/mapa'
+      preLoaderRoute: typeof MapaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/mis-publicaciones': {
+      id: '/mis-publicaciones'
+      path: '/mis-publicaciones'
+      fullPath: '/mis-publicaciones'
+      preLoaderRoute: typeof MisPublicacionesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/perfil': {
+      id: '/perfil'
+      path: '/perfil'
+      fullPath: '/perfil'
+      preLoaderRoute: typeof PerfilRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/publicar': {
+      id: '/publicar'
+      path: '/publicar'
+      fullPath: '/publicar'
+      preLoaderRoute: typeof PublicarRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/mascota/$id': {
+      id: '/mascota/$id'
+      path: '/mascota/$id'
+      fullPath: '/mascota/$id'
+      preLoaderRoute: typeof MascotaIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ExplorarRoute: ExplorarRoute,
+  MapaRoute: MapaRoute,
+  MisPublicacionesRoute: MisPublicacionesRoute,
+  PerfilRoute: PerfilRoute,
+  PublicarRoute: PublicarRoute,
+  MascotaIdRoute: MascotaIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
