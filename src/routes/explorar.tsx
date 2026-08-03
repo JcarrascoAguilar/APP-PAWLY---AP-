@@ -9,73 +9,96 @@ import { cn } from "@/lib/utils";
 export const Route = createFileRoute("/explorar")({
   head: () => ({
     meta: [
-      { title: "Explorar mascotas — PETNOVA" },
+      { title: "Buscar mascotas — PETNOVA" },
       {
         name: "description",
         content:
-          "Filtra mascotas perdidas, encontradas o en adopción por especie y cercanía en PETNOVA.",
+          "Busca por nombre, especie, raza, distrito o estado: mascotas perdidas, encontradas y en adopción.",
       },
-      { property: "og:title", content: "Explorar mascotas — PETNOVA" },
+      { property: "og:title", content: "Buscar mascotas — PETNOVA" },
       {
         property: "og:description",
-        content: "Perros, gatos y más: perdidos, encontrados y en adopción cerca de ti.",
+        content: "Filtra perros, gatos y más por raza, distrito y estado.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
-  component: Explorar,
+  component: Buscar,
 });
 
-const filters = [
+const filtros = [
   { key: "todos", label: "Todos" },
-  { key: "perro", label: "Perros" },
-  { key: "gato", label: "Gatos" },
-  { key: "perdido", label: "Perdidos" },
-  { key: "encontrado", label: "Encontrados" },
+  { key: "perdido", label: "Perdidas" },
+  { key: "encontrado", label: "Encontradas" },
   { key: "adopcion", label: "En adopción" },
-  { key: "cerca", label: "Cerca de mí" },
 ] as const;
 
-function Explorar() {
+const especies = [
+  { key: "todas", label: "Todas" },
+  { key: "perro", label: "Perros" },
+  { key: "gato", label: "Gatos" },
+  { key: "otro", label: "Otros" },
+] as const;
+
+function Buscar() {
   const { pets } = usePets();
-  const [filter, setFilter] = useState<(typeof filters)[number]["key"]>("todos");
+  const [estado, setEstado] = useState<(typeof filtros)[number]["key"]>("todos");
+  const [especie, setEspecie] = useState<(typeof especies)[number]["key"]>("todas");
   const [q, setQ] = useState("");
 
   const list = pets
-    .filter((p) => {
-      if (filter === "todos") return true;
-      if (filter === "cerca") return p.coords.x < 55;
-      if (filter === "perro" || filter === "gato") return p.species === filter;
-      return p.status === filter;
-    })
+    .filter((p) => p.status !== "reencuentro")
+    .filter((p) => (estado === "todos" ? true : p.status === estado))
+    .filter((p) => (especie === "todas" ? true : p.species === especie))
     .filter((p) =>
-      q ? (p.name + p.location + p.description).toLowerCase().includes(q.toLowerCase()) : true,
+      q
+        ? (p.name + p.breed + p.district + p.location + p.description)
+            .toLowerCase()
+            .includes(q.toLowerCase())
+        : true,
     );
 
   return (
     <AppShell>
-      <h1 className="text-xl font-extrabold text-foreground">Explorar</h1>
+      <h1 className="text-xl font-extrabold text-foreground">Buscar mascotas</h1>
 
       <div className="mt-4 flex items-center gap-2 rounded-2xl border border-border bg-card px-3 py-2">
-        <Search className="size-4 text-muted-foreground" />
+        <Search className="size-4 shrink-0 text-muted-foreground" />
         <input
           value={q}
           onChange={(e) => setQ(e.target.value)}
-          placeholder="Buscar mascota o zona"
+          placeholder="Nombre, raza o distrito"
           className="w-full bg-transparent text-sm outline-none placeholder:text-muted-foreground"
         />
       </div>
 
       <div className="-mx-4 mt-4 flex gap-2 overflow-x-auto px-4 pb-1">
-        {filters.map((f) => (
+        {filtros.map((f) => (
           <button
             key={f.key}
-            onClick={() => setFilter(f.key)}
+            onClick={() => setEstado(f.key)}
             className={cn(
               "shrink-0 rounded-full border px-3.5 py-1.5 text-xs font-semibold transition-colors",
-              filter === f.key
+              estado === f.key
                 ? "border-primary bg-primary text-primary-foreground"
+                : "border-border bg-card text-muted-foreground hover:text-foreground",
+            )}
+          >
+            {f.label}
+          </button>
+        ))}
+      </div>
+
+      <div className="-mx-4 mt-2 flex gap-2 overflow-x-auto px-4 pb-1">
+        {especies.map((f) => (
+          <button
+            key={f.key}
+            onClick={() => setEspecie(f.key)}
+            className={cn(
+              "shrink-0 rounded-full border px-3.5 py-1.5 text-xs font-semibold transition-colors",
+              especie === f.key
+                ? "border-accent bg-accent text-accent-foreground"
                 : "border-border bg-card text-muted-foreground hover:text-foreground",
             )}
           >

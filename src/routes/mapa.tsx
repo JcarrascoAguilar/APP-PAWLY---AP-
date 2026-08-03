@@ -39,7 +39,7 @@ function Mapa() {
       </p>
 
       <div className="relative mt-4 aspect-square overflow-hidden rounded-3xl border border-border bg-muted">
-        <div className="absolute inset-0 bg-[linear-gradient(hsl(0_0%_0%/0.05)_1px,transparent_1px),linear-gradient(90deg,hsl(0_0%_0%/0.05)_1px,transparent_1px)] bg-[size:32px_32px]" />
+        <div className="absolute inset-0 bg-[linear-gradient(oklch(0_0_0/0.05)_1px,transparent_1px),linear-gradient(90deg,oklch(0_0_0/0.05)_1px,transparent_1px)] bg-[size:32px_32px]" />
         {pets.map((p) => (
           <button
             key={p.id}
@@ -48,10 +48,10 @@ function Mapa() {
             className={cn(
               "absolute -translate-x-1/2 -translate-y-1/2 rounded-full p-1.5 shadow-md transition-transform hover:scale-110",
               p.status === "perdido"
-                ? "bg-destructive text-destructive-foreground"
-                : p.status === "encontrado"
-                  ? "bg-primary text-primary-foreground"
-                  : "bg-accent text-accent-foreground",
+                ? "bg-accent text-accent-foreground"
+                : p.status === "reencuentro"
+                  ? "bg-success text-success-foreground"
+                  : "bg-primary text-primary-foreground",
             )}
             aria-label={p.name}
           >
@@ -71,9 +71,9 @@ function Mapa() {
       </div>
 
       <div className="mt-3 flex flex-wrap gap-3 text-xs text-muted-foreground">
-        <Legend className="bg-destructive" label="Perdidas" />
-        <Legend className="bg-primary" label="Encontradas" />
-        <Legend className="bg-accent" label="En adopción" />
+        <Legend className="bg-accent" label="Perdidas" />
+        <Legend className="bg-primary" label="Encontradas y adopción" />
+        <Legend className="bg-success" label="Reencuentros" />
         <Legend className="bg-card ring-1 ring-border" label="Refugios y veterinarias" />
       </div>
 
@@ -83,7 +83,7 @@ function Mapa() {
           params={{ id: selected.id }}
           className="mt-4 flex items-center gap-3 rounded-2xl border border-border bg-card p-3"
         >
-          <img src={selected.photo} alt={selected.name} className="size-14 rounded-xl object-cover" />
+          <img src={selected.photos[0]} alt={selected.name} className="size-14 rounded-xl object-cover" />
           <div>
             <p className="text-sm font-bold text-foreground">{selected.name}</p>
             <p className="text-xs text-muted-foreground">

@@ -10,16 +10,39 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AdopcionRouteImport } from './routes/adopcion'
+import { Route as AuthRouteImport } from './routes/auth'
+import { Route as BienvenidaRouteImport } from './routes/bienvenida'
 import { Route as ExplorarRouteImport } from './routes/explorar'
 import { Route as MapaRouteImport } from './routes/mapa'
 import { Route as MisPublicacionesRouteImport } from './routes/mis-publicaciones'
 import { Route as PerfilRouteImport } from './routes/perfil'
 import { Route as PublicarRouteImport } from './routes/publicar'
+import { Route as ReencuentrosRouteImport } from './routes/reencuentros'
 import { Route as MascotaIdRouteImport } from './routes/mascota.$id'
+import { Route as PublicarIndexRouteImport } from './routes/publicar.index'
+import { Route as PublicarAdopcionRouteImport } from './routes/publicar.adopcion'
+import { Route as PublicarEncontradaRouteImport } from './routes/publicar.encontrada'
+import { Route as PublicarPerdidaRouteImport } from './routes/publicar.perdida'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdopcionRoute = AdopcionRouteImport.update({
+  id: '/adopcion',
+  path: '/adopcion',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthRoute = AuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BienvenidaRoute = BienvenidaRouteImport.update({
+  id: '/bienvenida',
+  path: '/bienvenida',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ExplorarRoute = ExplorarRouteImport.update({
@@ -47,77 +70,152 @@ const PublicarRoute = PublicarRouteImport.update({
   path: '/publicar',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ReencuentrosRoute = ReencuentrosRouteImport.update({
+  id: '/reencuentros',
+  path: '/reencuentros',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const MascotaIdRoute = MascotaIdRouteImport.update({
   id: '/mascota/$id',
   path: '/mascota/$id',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PublicarIndexRoute = PublicarIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => PublicarRoute,
+} as any)
+const PublicarAdopcionRoute = PublicarAdopcionRouteImport.update({
+  id: '/adopcion',
+  path: '/adopcion',
+  getParentRoute: () => PublicarRoute,
+} as any)
+const PublicarEncontradaRoute = PublicarEncontradaRouteImport.update({
+  id: '/encontrada',
+  path: '/encontrada',
+  getParentRoute: () => PublicarRoute,
+} as any)
+const PublicarPerdidaRoute = PublicarPerdidaRouteImport.update({
+  id: '/perdida',
+  path: '/perdida',
+  getParentRoute: () => PublicarRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/adopcion': typeof AdopcionRoute
+  '/auth': typeof AuthRoute
+  '/bienvenida': typeof BienvenidaRoute
   '/explorar': typeof ExplorarRoute
   '/mapa': typeof MapaRoute
   '/mis-publicaciones': typeof MisPublicacionesRoute
   '/perfil': typeof PerfilRoute
-  '/publicar': typeof PublicarRoute
+  '/publicar': typeof PublicarRouteWithChildren
+  '/reencuentros': typeof ReencuentrosRoute
   '/mascota/$id': typeof MascotaIdRoute
+  '/publicar/adopcion': typeof PublicarAdopcionRoute
+  '/publicar/encontrada': typeof PublicarEncontradaRoute
+  '/publicar/perdida': typeof PublicarPerdidaRoute
+  '/publicar/': typeof PublicarIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/adopcion': typeof AdopcionRoute
+  '/auth': typeof AuthRoute
+  '/bienvenida': typeof BienvenidaRoute
   '/explorar': typeof ExplorarRoute
   '/mapa': typeof MapaRoute
   '/mis-publicaciones': typeof MisPublicacionesRoute
   '/perfil': typeof PerfilRoute
-  '/publicar': typeof PublicarRoute
+  '/reencuentros': typeof ReencuentrosRoute
   '/mascota/$id': typeof MascotaIdRoute
+  '/publicar/adopcion': typeof PublicarAdopcionRoute
+  '/publicar/encontrada': typeof PublicarEncontradaRoute
+  '/publicar/perdida': typeof PublicarPerdidaRoute
+  '/publicar': typeof PublicarIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/adopcion': typeof AdopcionRoute
+  '/auth': typeof AuthRoute
+  '/bienvenida': typeof BienvenidaRoute
   '/explorar': typeof ExplorarRoute
   '/mapa': typeof MapaRoute
   '/mis-publicaciones': typeof MisPublicacionesRoute
   '/perfil': typeof PerfilRoute
-  '/publicar': typeof PublicarRoute
+  '/publicar': typeof PublicarRouteWithChildren
+  '/reencuentros': typeof ReencuentrosRoute
   '/mascota/$id': typeof MascotaIdRoute
+  '/publicar/adopcion': typeof PublicarAdopcionRoute
+  '/publicar/encontrada': typeof PublicarEncontradaRoute
+  '/publicar/perdida': typeof PublicarPerdidaRoute
+  '/publicar/': typeof PublicarIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/adopcion'
+    | '/auth'
+    | '/bienvenida'
     | '/explorar'
     | '/mapa'
     | '/mis-publicaciones'
     | '/perfil'
     | '/publicar'
+    | '/reencuentros'
     | '/mascota/$id'
+    | '/publicar/adopcion'
+    | '/publicar/encontrada'
+    | '/publicar/perdida'
+    | '/publicar/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/adopcion'
+    | '/auth'
+    | '/bienvenida'
     | '/explorar'
     | '/mapa'
     | '/mis-publicaciones'
     | '/perfil'
-    | '/publicar'
+    | '/reencuentros'
     | '/mascota/$id'
+    | '/publicar/adopcion'
+    | '/publicar/encontrada'
+    | '/publicar/perdida'
+    | '/publicar'
   id:
     | '__root__'
     | '/'
+    | '/adopcion'
+    | '/auth'
+    | '/bienvenida'
     | '/explorar'
     | '/mapa'
     | '/mis-publicaciones'
     | '/perfil'
     | '/publicar'
+    | '/reencuentros'
     | '/mascota/$id'
+    | '/publicar/adopcion'
+    | '/publicar/encontrada'
+    | '/publicar/perdida'
+    | '/publicar/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AdopcionRoute: typeof AdopcionRoute
+  AuthRoute: typeof AuthRoute
+  BienvenidaRoute: typeof BienvenidaRoute
   ExplorarRoute: typeof ExplorarRoute
   MapaRoute: typeof MapaRoute
   MisPublicacionesRoute: typeof MisPublicacionesRoute
   PerfilRoute: typeof PerfilRoute
-  PublicarRoute: typeof PublicarRoute
+  PublicarRoute: typeof PublicarRouteWithChildren
+  ReencuentrosRoute: typeof ReencuentrosRoute
   MascotaIdRoute: typeof MascotaIdRoute
 }
 
@@ -128,6 +226,27 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/adopcion': {
+      id: '/adopcion'
+      path: '/adopcion'
+      fullPath: '/adopcion'
+      preLoaderRoute: typeof AdopcionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/bienvenida': {
+      id: '/bienvenida'
+      path: '/bienvenida'
+      fullPath: '/bienvenida'
+      preLoaderRoute: typeof BienvenidaRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/explorar': {
@@ -165,6 +284,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PublicarRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/reencuentros': {
+      id: '/reencuentros'
+      path: '/reencuentros'
+      fullPath: '/reencuentros'
+      preLoaderRoute: typeof ReencuentrosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/mascota/$id': {
       id: '/mascota/$id'
       path: '/mascota/$id'
@@ -172,16 +298,66 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MascotaIdRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/publicar/': {
+      id: '/publicar/'
+      path: '/'
+      fullPath: '/publicar/'
+      preLoaderRoute: typeof PublicarIndexRouteImport
+      parentRoute: typeof PublicarRoute
+    }
+    '/publicar/adopcion': {
+      id: '/publicar/adopcion'
+      path: '/adopcion'
+      fullPath: '/publicar/adopcion'
+      preLoaderRoute: typeof PublicarAdopcionRouteImport
+      parentRoute: typeof PublicarRoute
+    }
+    '/publicar/encontrada': {
+      id: '/publicar/encontrada'
+      path: '/encontrada'
+      fullPath: '/publicar/encontrada'
+      preLoaderRoute: typeof PublicarEncontradaRouteImport
+      parentRoute: typeof PublicarRoute
+    }
+    '/publicar/perdida': {
+      id: '/publicar/perdida'
+      path: '/perdida'
+      fullPath: '/publicar/perdida'
+      preLoaderRoute: typeof PublicarPerdidaRouteImport
+      parentRoute: typeof PublicarRoute
+    }
   }
 }
 
+interface PublicarRouteChildren {
+  PublicarAdopcionRoute: typeof PublicarAdopcionRoute
+  PublicarEncontradaRoute: typeof PublicarEncontradaRoute
+  PublicarPerdidaRoute: typeof PublicarPerdidaRoute
+  PublicarIndexRoute: typeof PublicarIndexRoute
+}
+
+const PublicarRouteChildren: PublicarRouteChildren = {
+  PublicarAdopcionRoute: PublicarAdopcionRoute,
+  PublicarEncontradaRoute: PublicarEncontradaRoute,
+  PublicarPerdidaRoute: PublicarPerdidaRoute,
+  PublicarIndexRoute: PublicarIndexRoute,
+}
+
+const PublicarRouteWithChildren = PublicarRoute._addFileChildren(
+  PublicarRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AdopcionRoute: AdopcionRoute,
+  AuthRoute: AuthRoute,
+  BienvenidaRoute: BienvenidaRoute,
   ExplorarRoute: ExplorarRoute,
   MapaRoute: MapaRoute,
   MisPublicacionesRoute: MisPublicacionesRoute,
   PerfilRoute: PerfilRoute,
-  PublicarRoute: PublicarRoute,
+  PublicarRoute: PublicarRouteWithChildren,
+  ReencuentrosRoute: ReencuentrosRoute,
   MascotaIdRoute: MascotaIdRoute,
 }
 export const routeTree = rootRouteImport

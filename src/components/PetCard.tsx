@@ -4,9 +4,10 @@ import { cn } from "@/lib/utils";
 import { statusLabel, speciesLabel, useFavorites, type Pet } from "@/lib/petnova";
 
 const statusStyles: Record<Pet["status"], string> = {
-  perdido: "bg-destructive/10 text-destructive",
+  perdido: "bg-accent/15 text-accent",
   encontrado: "bg-primary/10 text-primary",
-  adopcion: "bg-accent/15 text-accent",
+  adopcion: "bg-primary/10 text-primary",
+  reencuentro: "bg-success/15 text-success",
 };
 
 export function StatusBadge({ status }: { status: Pet["status"] }) {
@@ -26,14 +27,19 @@ export function PetCard({ pet }: { pet: Pet }) {
   const { isFav, toggle } = useFavorites();
 
   return (
-    <div className="group relative overflow-hidden rounded-3xl border border-border/70 bg-card shadow-sm transition-shadow hover:shadow-md">
+    <div
+      className={cn(
+        "group animate-fade-up relative overflow-hidden rounded-3xl border bg-card shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-md",
+        pet.status === "reencuentro" ? "border-success/50" : "border-border/70",
+      )}
+    >
       <Link to="/mascota/$id" params={{ id: pet.id }} className="block">
         <div className="relative aspect-[4/3] overflow-hidden bg-muted">
           <img
-            src={pet.photo}
+            src={pet.photos[0]}
             alt={`${speciesLabel[pet.species]} ${pet.name}`}
             loading="lazy"
-            className="size-full object-cover transition-transform duration-300 group-hover:scale-105"
+            className="size-full object-cover transition-transform duration-500 group-hover:scale-105"
           />
           <div className="absolute left-3 top-3">
             <StatusBadge status={pet.status} />
@@ -42,10 +48,11 @@ export function PetCard({ pet }: { pet: Pet }) {
         <div className="space-y-1 p-4">
           <h3 className="text-base font-bold text-foreground">{pet.name}</h3>
           <p className="text-xs text-muted-foreground">
-            {speciesLabel[pet.species]} · {pet.age}
+            {speciesLabel[pet.species]} · {pet.breed} · {pet.age}
           </p>
           <p className="flex items-center gap-1 text-xs text-muted-foreground">
-            <MapPin className="size-3.5" /> {pet.location}
+            <MapPin className="size-3.5 shrink-0" />
+            <span className="truncate">{pet.district}</span>
           </p>
         </div>
       </Link>

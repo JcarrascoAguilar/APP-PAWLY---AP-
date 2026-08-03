@@ -49,7 +49,7 @@ function MisPublicaciones() {
           {mine.map((pet) => (
             <div key={pet.id} className="rounded-3xl border border-border bg-card p-4">
               <div className="flex gap-3">
-                <img src={pet.photo} alt={pet.name} className="size-20 rounded-2xl object-cover" />
+                <img src={pet.photos[0]} alt={pet.name} className="size-20 rounded-2xl object-cover" />
                 <div className="flex-1">
                   <div className="flex items-start justify-between gap-2">
                     <p className="text-base font-bold text-foreground">{pet.name}</p>
@@ -61,15 +61,15 @@ function MisPublicaciones() {
               </div>
 
               <div className="mt-3 flex flex-wrap gap-2">
-                {pet.status !== "encontrado" && (
+                {pet.status !== "reencuentro" && (
                   <button
                     onClick={() => {
-                      updatePet(pet.id, { status: "encontrado" });
-                      toast.success("Marcada como encontrada");
+                      updatePet(pet.id, { status: "reencuentro" });
+                      toast.success("¡Marcada como encontrada! Ahora está en Reencuentros.");
                     }}
-                    className="rounded-full bg-primary/10 px-3 py-1.5 text-xs font-semibold text-primary"
+                    className="rounded-full bg-success/15 px-3 py-1.5 text-xs font-semibold text-success"
                   >
-                    Marcar encontrada
+                    Marcar como encontrada
                   </button>
                 )}
                 {pet.status !== "adopcion" && (
