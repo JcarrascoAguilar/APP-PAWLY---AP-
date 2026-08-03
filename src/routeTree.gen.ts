@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AdopcionRouteImport } from './routes/adopcion'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as BienvenidaRouteImport } from './routes/bienvenida'
 import { Route as ExplorarRouteImport } from './routes/explorar'
@@ -22,6 +23,11 @@ import { Route as MascotaIdRouteImport } from './routes/mascota.$id'
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdopcionRoute = AdopcionRouteImport.update({
+  id: '/adopcion',
+  path: '/adopcion',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AuthRoute = AuthRouteImport.update({
@@ -67,6 +73,7 @@ const MascotaIdRoute = MascotaIdRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/adopcion': typeof AdopcionRoute
   '/auth': typeof AuthRoute
   '/bienvenida': typeof BienvenidaRoute
   '/explorar': typeof ExplorarRoute
@@ -78,6 +85,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/adopcion': typeof AdopcionRoute
   '/auth': typeof AuthRoute
   '/bienvenida': typeof BienvenidaRoute
   '/explorar': typeof ExplorarRoute
@@ -90,6 +98,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/adopcion': typeof AdopcionRoute
   '/auth': typeof AuthRoute
   '/bienvenida': typeof BienvenidaRoute
   '/explorar': typeof ExplorarRoute
@@ -103,6 +112,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/adopcion'
     | '/auth'
     | '/bienvenida'
     | '/explorar'
@@ -114,6 +124,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/adopcion'
     | '/auth'
     | '/bienvenida'
     | '/explorar'
@@ -125,6 +136,7 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/adopcion'
     | '/auth'
     | '/bienvenida'
     | '/explorar'
@@ -137,6 +149,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AdopcionRoute: typeof AdopcionRoute
   AuthRoute: typeof AuthRoute
   BienvenidaRoute: typeof BienvenidaRoute
   ExplorarRoute: typeof ExplorarRoute
@@ -154,6 +167,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/adopcion': {
+      id: '/adopcion'
+      path: '/adopcion'
+      fullPath: '/adopcion'
+      preLoaderRoute: typeof AdopcionRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/auth': {
@@ -217,6 +237,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AdopcionRoute: AdopcionRoute,
   AuthRoute: AuthRoute,
   BienvenidaRoute: BienvenidaRoute,
   ExplorarRoute: ExplorarRoute,
