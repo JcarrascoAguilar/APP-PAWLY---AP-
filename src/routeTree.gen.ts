@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ExplorarRouteImport } from './routes/explorar'
+import { Route as MascotaIdRouteImport } from './routes/mascota.$id'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -22,31 +23,40 @@ const ExplorarRoute = ExplorarRouteImport.update({
   path: '/explorar',
   getParentRoute: () => rootRouteImport,
 } as any)
+const MascotaIdRoute = MascotaIdRouteImport.update({
+  id: '/mascota/$id',
+  path: '/mascota/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/explorar': typeof ExplorarRoute
+  '/mascota/$id': typeof MascotaIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/explorar': typeof ExplorarRoute
+  '/mascota/$id': typeof MascotaIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/explorar': typeof ExplorarRoute
+  '/mascota/$id': typeof MascotaIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/explorar'
+  fullPaths: '/' | '/explorar' | '/mascota/$id'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/explorar'
-  id: '__root__' | '/' | '/explorar'
+  to: '/' | '/explorar' | '/mascota/$id'
+  id: '__root__' | '/' | '/explorar' | '/mascota/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ExplorarRoute: typeof ExplorarRoute
+  MascotaIdRoute: typeof MascotaIdRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -65,12 +75,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ExplorarRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/mascota/$id': {
+      id: '/mascota/$id'
+      path: '/mascota/$id'
+      fullPath: '/mascota/$id'
+      preLoaderRoute: typeof MascotaIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ExplorarRoute: ExplorarRoute,
+  MascotaIdRoute: MascotaIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
