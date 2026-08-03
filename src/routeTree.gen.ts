@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ExplorarRouteImport } from './routes/explorar'
+import { Route as MapaRouteImport } from './routes/mapa'
 import { Route as PublicarRouteImport } from './routes/publicar'
 import { Route as MascotaIdRouteImport } from './routes/mascota.$id'
 
@@ -22,6 +23,11 @@ const IndexRoute = IndexRouteImport.update({
 const ExplorarRoute = ExplorarRouteImport.update({
   id: '/explorar',
   path: '/explorar',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MapaRoute = MapaRouteImport.update({
+  id: '/mapa',
+  path: '/mapa',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PublicarRoute = PublicarRouteImport.update({
@@ -38,12 +44,14 @@ const MascotaIdRoute = MascotaIdRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/explorar': typeof ExplorarRoute
+  '/mapa': typeof MapaRoute
   '/publicar': typeof PublicarRoute
   '/mascota/$id': typeof MascotaIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/explorar': typeof ExplorarRoute
+  '/mapa': typeof MapaRoute
   '/publicar': typeof PublicarRoute
   '/mascota/$id': typeof MascotaIdRoute
 }
@@ -51,20 +59,22 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/explorar': typeof ExplorarRoute
+  '/mapa': typeof MapaRoute
   '/publicar': typeof PublicarRoute
   '/mascota/$id': typeof MascotaIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/explorar' | '/publicar' | '/mascota/$id'
+  fullPaths: '/' | '/explorar' | '/mapa' | '/publicar' | '/mascota/$id'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/explorar' | '/publicar' | '/mascota/$id'
-  id: '__root__' | '/' | '/explorar' | '/publicar' | '/mascota/$id'
+  to: '/' | '/explorar' | '/mapa' | '/publicar' | '/mascota/$id'
+  id: '__root__' | '/' | '/explorar' | '/mapa' | '/publicar' | '/mascota/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ExplorarRoute: typeof ExplorarRoute
+  MapaRoute: typeof MapaRoute
   PublicarRoute: typeof PublicarRoute
   MascotaIdRoute: typeof MascotaIdRoute
 }
@@ -83,6 +93,13 @@ declare module '@tanstack/react-router' {
       path: '/explorar'
       fullPath: '/explorar'
       preLoaderRoute: typeof ExplorarRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/mapa': {
+      id: '/mapa'
+      path: '/mapa'
+      fullPath: '/mapa'
+      preLoaderRoute: typeof MapaRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/publicar': {
@@ -105,6 +122,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ExplorarRoute: ExplorarRoute,
+  MapaRoute: MapaRoute,
   PublicarRoute: PublicarRoute,
   MascotaIdRoute: MascotaIdRoute,
 }
