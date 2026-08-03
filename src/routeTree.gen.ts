@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ExplorarRouteImport } from './routes/explorar'
+import { Route as PublicarRouteImport } from './routes/publicar'
 import { Route as MascotaIdRouteImport } from './routes/mascota.$id'
 
 const IndexRoute = IndexRouteImport.update({
@@ -23,6 +24,11 @@ const ExplorarRoute = ExplorarRouteImport.update({
   path: '/explorar',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PublicarRoute = PublicarRouteImport.update({
+  id: '/publicar',
+  path: '/publicar',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const MascotaIdRoute = MascotaIdRouteImport.update({
   id: '/mascota/$id',
   path: '/mascota/$id',
@@ -32,30 +38,34 @@ const MascotaIdRoute = MascotaIdRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/explorar': typeof ExplorarRoute
+  '/publicar': typeof PublicarRoute
   '/mascota/$id': typeof MascotaIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/explorar': typeof ExplorarRoute
+  '/publicar': typeof PublicarRoute
   '/mascota/$id': typeof MascotaIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/explorar': typeof ExplorarRoute
+  '/publicar': typeof PublicarRoute
   '/mascota/$id': typeof MascotaIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/explorar' | '/mascota/$id'
+  fullPaths: '/' | '/explorar' | '/publicar' | '/mascota/$id'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/explorar' | '/mascota/$id'
-  id: '__root__' | '/' | '/explorar' | '/mascota/$id'
+  to: '/' | '/explorar' | '/publicar' | '/mascota/$id'
+  id: '__root__' | '/' | '/explorar' | '/publicar' | '/mascota/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ExplorarRoute: typeof ExplorarRoute
+  PublicarRoute: typeof PublicarRoute
   MascotaIdRoute: typeof MascotaIdRoute
 }
 
@@ -75,6 +85,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ExplorarRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/publicar': {
+      id: '/publicar'
+      path: '/publicar'
+      fullPath: '/publicar'
+      preLoaderRoute: typeof PublicarRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/mascota/$id': {
       id: '/mascota/$id'
       path: '/mascota/$id'
@@ -88,6 +105,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ExplorarRoute: ExplorarRoute,
+  PublicarRoute: PublicarRoute,
   MascotaIdRoute: MascotaIdRoute,
 }
 export const routeTree = rootRouteImport
