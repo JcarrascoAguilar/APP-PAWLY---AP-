@@ -18,6 +18,7 @@ import { Route as MapaRouteImport } from './routes/mapa'
 import { Route as MisPublicacionesRouteImport } from './routes/mis-publicaciones'
 import { Route as PerfilRouteImport } from './routes/perfil'
 import { Route as PublicarRouteImport } from './routes/publicar'
+import { Route as ReencuentrosRouteImport } from './routes/reencuentros'
 import { Route as MascotaIdRouteImport } from './routes/mascota.$id'
 
 const IndexRoute = IndexRouteImport.update({
@@ -65,6 +66,11 @@ const PublicarRoute = PublicarRouteImport.update({
   path: '/publicar',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ReencuentrosRoute = ReencuentrosRouteImport.update({
+  id: '/reencuentros',
+  path: '/reencuentros',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const MascotaIdRoute = MascotaIdRouteImport.update({
   id: '/mascota/$id',
   path: '/mascota/$id',
@@ -81,6 +87,7 @@ export interface FileRoutesByFullPath {
   '/mis-publicaciones': typeof MisPublicacionesRoute
   '/perfil': typeof PerfilRoute
   '/publicar': typeof PublicarRoute
+  '/reencuentros': typeof ReencuentrosRoute
   '/mascota/$id': typeof MascotaIdRoute
 }
 export interface FileRoutesByTo {
@@ -93,6 +100,7 @@ export interface FileRoutesByTo {
   '/mis-publicaciones': typeof MisPublicacionesRoute
   '/perfil': typeof PerfilRoute
   '/publicar': typeof PublicarRoute
+  '/reencuentros': typeof ReencuentrosRoute
   '/mascota/$id': typeof MascotaIdRoute
 }
 export interface FileRoutesById {
@@ -106,6 +114,7 @@ export interface FileRoutesById {
   '/mis-publicaciones': typeof MisPublicacionesRoute
   '/perfil': typeof PerfilRoute
   '/publicar': typeof PublicarRoute
+  '/reencuentros': typeof ReencuentrosRoute
   '/mascota/$id': typeof MascotaIdRoute
 }
 export interface FileRouteTypes {
@@ -120,6 +129,7 @@ export interface FileRouteTypes {
     | '/mis-publicaciones'
     | '/perfil'
     | '/publicar'
+    | '/reencuentros'
     | '/mascota/$id'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -132,6 +142,7 @@ export interface FileRouteTypes {
     | '/mis-publicaciones'
     | '/perfil'
     | '/publicar'
+    | '/reencuentros'
     | '/mascota/$id'
   id:
     | '__root__'
@@ -144,6 +155,7 @@ export interface FileRouteTypes {
     | '/mis-publicaciones'
     | '/perfil'
     | '/publicar'
+    | '/reencuentros'
     | '/mascota/$id'
   fileRoutesById: FileRoutesById
 }
@@ -157,6 +169,7 @@ export interface RootRouteChildren {
   MisPublicacionesRoute: typeof MisPublicacionesRoute
   PerfilRoute: typeof PerfilRoute
   PublicarRoute: typeof PublicarRoute
+  ReencuentrosRoute: typeof ReencuentrosRoute
   MascotaIdRoute: typeof MascotaIdRoute
 }
 
@@ -225,6 +238,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PublicarRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/reencuentros': {
+      id: '/reencuentros'
+      path: '/reencuentros'
+      fullPath: '/reencuentros'
+      preLoaderRoute: typeof ReencuentrosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/mascota/$id': {
       id: '/mascota/$id'
       path: '/mascota/$id'
@@ -245,6 +265,7 @@ const rootRouteChildren: RootRouteChildren = {
   MisPublicacionesRoute: MisPublicacionesRoute,
   PerfilRoute: PerfilRoute,
   PublicarRoute: PublicarRoute,
+  ReencuentrosRoute: ReencuentrosRoute,
   MascotaIdRoute: MascotaIdRoute,
 }
 export const routeTree = rootRouteImport
