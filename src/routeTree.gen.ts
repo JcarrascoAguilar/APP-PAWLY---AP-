@@ -13,6 +13,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as ExplorarRouteImport } from './routes/explorar'
 import { Route as MapaRouteImport } from './routes/mapa'
 import { Route as MisPublicacionesRouteImport } from './routes/mis-publicaciones'
+import { Route as PerfilRouteImport } from './routes/perfil'
 import { Route as PublicarRouteImport } from './routes/publicar'
 import { Route as MascotaIdRouteImport } from './routes/mascota.$id'
 
@@ -36,6 +37,11 @@ const MisPublicacionesRoute = MisPublicacionesRouteImport.update({
   path: '/mis-publicaciones',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PerfilRoute = PerfilRouteImport.update({
+  id: '/perfil',
+  path: '/perfil',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PublicarRoute = PublicarRouteImport.update({
   id: '/publicar',
   path: '/publicar',
@@ -52,6 +58,7 @@ export interface FileRoutesByFullPath {
   '/explorar': typeof ExplorarRoute
   '/mapa': typeof MapaRoute
   '/mis-publicaciones': typeof MisPublicacionesRoute
+  '/perfil': typeof PerfilRoute
   '/publicar': typeof PublicarRoute
   '/mascota/$id': typeof MascotaIdRoute
 }
@@ -60,6 +67,7 @@ export interface FileRoutesByTo {
   '/explorar': typeof ExplorarRoute
   '/mapa': typeof MapaRoute
   '/mis-publicaciones': typeof MisPublicacionesRoute
+  '/perfil': typeof PerfilRoute
   '/publicar': typeof PublicarRoute
   '/mascota/$id': typeof MascotaIdRoute
 }
@@ -69,6 +77,7 @@ export interface FileRoutesById {
   '/explorar': typeof ExplorarRoute
   '/mapa': typeof MapaRoute
   '/mis-publicaciones': typeof MisPublicacionesRoute
+  '/perfil': typeof PerfilRoute
   '/publicar': typeof PublicarRoute
   '/mascota/$id': typeof MascotaIdRoute
 }
@@ -79,6 +88,7 @@ export interface FileRouteTypes {
     | '/explorar'
     | '/mapa'
     | '/mis-publicaciones'
+    | '/perfil'
     | '/publicar'
     | '/mascota/$id'
   fileRoutesByTo: FileRoutesByTo
@@ -87,6 +97,7 @@ export interface FileRouteTypes {
     | '/explorar'
     | '/mapa'
     | '/mis-publicaciones'
+    | '/perfil'
     | '/publicar'
     | '/mascota/$id'
   id:
@@ -95,6 +106,7 @@ export interface FileRouteTypes {
     | '/explorar'
     | '/mapa'
     | '/mis-publicaciones'
+    | '/perfil'
     | '/publicar'
     | '/mascota/$id'
   fileRoutesById: FileRoutesById
@@ -104,6 +116,7 @@ export interface RootRouteChildren {
   ExplorarRoute: typeof ExplorarRoute
   MapaRoute: typeof MapaRoute
   MisPublicacionesRoute: typeof MisPublicacionesRoute
+  PerfilRoute: typeof PerfilRoute
   PublicarRoute: typeof PublicarRoute
   MascotaIdRoute: typeof MascotaIdRoute
 }
@@ -138,6 +151,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MisPublicacionesRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/perfil': {
+      id: '/perfil'
+      path: '/perfil'
+      fullPath: '/perfil'
+      preLoaderRoute: typeof PerfilRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/publicar': {
       id: '/publicar'
       path: '/publicar'
@@ -160,6 +180,7 @@ const rootRouteChildren: RootRouteChildren = {
   ExplorarRoute: ExplorarRoute,
   MapaRoute: MapaRoute,
   MisPublicacionesRoute: MisPublicacionesRoute,
+  PerfilRoute: PerfilRoute,
   PublicarRoute: PublicarRoute,
   MascotaIdRoute: MascotaIdRoute,
 }
