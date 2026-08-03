@@ -20,6 +20,7 @@ import { Route as PerfilRouteImport } from './routes/perfil'
 import { Route as PublicarRouteImport } from './routes/publicar'
 import { Route as ReencuentrosRouteImport } from './routes/reencuentros'
 import { Route as MascotaIdRouteImport } from './routes/mascota.$id'
+import { Route as PublicarIndexRouteImport } from './routes/publicar.index'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -76,6 +77,11 @@ const MascotaIdRoute = MascotaIdRouteImport.update({
   path: '/mascota/$id',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PublicarIndexRoute = PublicarIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => PublicarRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -86,9 +92,10 @@ export interface FileRoutesByFullPath {
   '/mapa': typeof MapaRoute
   '/mis-publicaciones': typeof MisPublicacionesRoute
   '/perfil': typeof PerfilRoute
-  '/publicar': typeof PublicarRoute
+  '/publicar': typeof PublicarRouteWithChildren
   '/reencuentros': typeof ReencuentrosRoute
   '/mascota/$id': typeof MascotaIdRoute
+  '/publicar/': typeof PublicarIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -99,9 +106,9 @@ export interface FileRoutesByTo {
   '/mapa': typeof MapaRoute
   '/mis-publicaciones': typeof MisPublicacionesRoute
   '/perfil': typeof PerfilRoute
-  '/publicar': typeof PublicarRoute
   '/reencuentros': typeof ReencuentrosRoute
   '/mascota/$id': typeof MascotaIdRoute
+  '/publicar': typeof PublicarIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -113,9 +120,10 @@ export interface FileRoutesById {
   '/mapa': typeof MapaRoute
   '/mis-publicaciones': typeof MisPublicacionesRoute
   '/perfil': typeof PerfilRoute
-  '/publicar': typeof PublicarRoute
+  '/publicar': typeof PublicarRouteWithChildren
   '/reencuentros': typeof ReencuentrosRoute
   '/mascota/$id': typeof MascotaIdRoute
+  '/publicar/': typeof PublicarIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -131,6 +139,7 @@ export interface FileRouteTypes {
     | '/publicar'
     | '/reencuentros'
     | '/mascota/$id'
+    | '/publicar/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -141,9 +150,9 @@ export interface FileRouteTypes {
     | '/mapa'
     | '/mis-publicaciones'
     | '/perfil'
-    | '/publicar'
     | '/reencuentros'
     | '/mascota/$id'
+    | '/publicar'
   id:
     | '__root__'
     | '/'
@@ -157,6 +166,7 @@ export interface FileRouteTypes {
     | '/publicar'
     | '/reencuentros'
     | '/mascota/$id'
+    | '/publicar/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -168,7 +178,7 @@ export interface RootRouteChildren {
   MapaRoute: typeof MapaRoute
   MisPublicacionesRoute: typeof MisPublicacionesRoute
   PerfilRoute: typeof PerfilRoute
-  PublicarRoute: typeof PublicarRoute
+  PublicarRoute: typeof PublicarRouteWithChildren
   ReencuentrosRoute: typeof ReencuentrosRoute
   MascotaIdRoute: typeof MascotaIdRoute
 }
@@ -252,8 +262,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MascotaIdRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/publicar/': {
+      id: '/publicar/'
+      path: '/'
+      fullPath: '/publicar/'
+      preLoaderRoute: typeof PublicarIndexRouteImport
+      parentRoute: typeof PublicarRoute
+    }
   }
 }
+
+interface PublicarRouteChildren {
+  PublicarIndexRoute: typeof PublicarIndexRoute
+}
+
+const PublicarRouteChildren: PublicarRouteChildren = {
+  PublicarIndexRoute: PublicarIndexRoute,
+}
+
+const PublicarRouteWithChildren = PublicarRoute._addFileChildren(
+  PublicarRouteChildren,
+)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
@@ -264,7 +293,7 @@ const rootRouteChildren: RootRouteChildren = {
   MapaRoute: MapaRoute,
   MisPublicacionesRoute: MisPublicacionesRoute,
   PerfilRoute: PerfilRoute,
-  PublicarRoute: PublicarRoute,
+  PublicarRoute: PublicarRouteWithChildren,
   ReencuentrosRoute: ReencuentrosRoute,
   MascotaIdRoute: MascotaIdRoute,
 }
