@@ -83,7 +83,7 @@ function Mapa() {
           params={{ id: selected.id }}
           className="mt-4 flex items-center gap-3 rounded-2xl border border-border bg-card p-3"
         >
-          <img src={selected.photo} alt={selected.name} className="size-14 rounded-xl object-cover" />
+          <img src={selected.photos[0]} alt={selected.name} className="size-14 rounded-xl object-cover" />
           <div>
             <p className="text-sm font-bold text-foreground">{selected.name}</p>
             <p className="text-xs text-muted-foreground">
