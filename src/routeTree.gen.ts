@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as BienvenidaRouteImport } from './routes/bienvenida'
 import { Route as ExplorarRouteImport } from './routes/explorar'
 import { Route as MapaRouteImport } from './routes/mapa'
 import { Route as MisPublicacionesRouteImport } from './routes/mis-publicaciones'
@@ -20,6 +21,11 @@ import { Route as MascotaIdRouteImport } from './routes/mascota.$id'
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BienvenidaRoute = BienvenidaRouteImport.update({
+  id: '/bienvenida',
+  path: '/bienvenida',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ExplorarRoute = ExplorarRouteImport.update({
@@ -55,6 +61,7 @@ const MascotaIdRoute = MascotaIdRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/bienvenida': typeof BienvenidaRoute
   '/explorar': typeof ExplorarRoute
   '/mapa': typeof MapaRoute
   '/mis-publicaciones': typeof MisPublicacionesRoute
@@ -64,6 +71,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/bienvenida': typeof BienvenidaRoute
   '/explorar': typeof ExplorarRoute
   '/mapa': typeof MapaRoute
   '/mis-publicaciones': typeof MisPublicacionesRoute
@@ -74,6 +82,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/bienvenida': typeof BienvenidaRoute
   '/explorar': typeof ExplorarRoute
   '/mapa': typeof MapaRoute
   '/mis-publicaciones': typeof MisPublicacionesRoute
@@ -85,6 +94,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/bienvenida'
     | '/explorar'
     | '/mapa'
     | '/mis-publicaciones'
@@ -94,6 +104,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/bienvenida'
     | '/explorar'
     | '/mapa'
     | '/mis-publicaciones'
@@ -103,6 +114,7 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/bienvenida'
     | '/explorar'
     | '/mapa'
     | '/mis-publicaciones'
@@ -113,6 +125,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  BienvenidaRoute: typeof BienvenidaRoute
   ExplorarRoute: typeof ExplorarRoute
   MapaRoute: typeof MapaRoute
   MisPublicacionesRoute: typeof MisPublicacionesRoute
@@ -128,6 +141,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/bienvenida': {
+      id: '/bienvenida'
+      path: '/bienvenida'
+      fullPath: '/bienvenida'
+      preLoaderRoute: typeof BienvenidaRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/explorar': {
@@ -177,6 +197,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  BienvenidaRoute: BienvenidaRoute,
   ExplorarRoute: ExplorarRoute,
   MapaRoute: MapaRoute,
   MisPublicacionesRoute: MisPublicacionesRoute,
