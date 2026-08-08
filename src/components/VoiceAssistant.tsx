@@ -1,8 +1,8 @@
 import React from 'react';
-import { useConversation } from '@elevenlabs/react';
+import { useConversation, ConversationProvider } from '@elevenlabs/react';
 import { Mic, MicOff, Volume2 } from 'lucide-react';
 
-export const VoiceAssistant = () => {
+const VoiceAssistantButton = () => {
   const conversation = useConversation({
     onConnect: () => console.log('Nova conectada'),
     onDisconnect: () => console.log('Nova desconectada'),
@@ -36,3 +36,9 @@ export const VoiceAssistant = () => {
     </button>
   );
 };
+
+export const VoiceAssistant = () => (
+  <ConversationProvider>
+    <VoiceAssistantButton />
+  </ConversationProvider>
+);
