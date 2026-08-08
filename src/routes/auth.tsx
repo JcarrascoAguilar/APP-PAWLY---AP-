@@ -3,7 +3,7 @@ import { useState } from "react";
 import { toast } from "sonner";
 import { useAuth } from "@/lib/petnova";
 import { cn } from "@/lib/utils";
-import logo from "@/assets/petnova-logo.png";
+import logo from "@/assets/pawly-logo.png.asset.json";
 
 type Modo = "login" | "registro";
 
@@ -61,7 +61,7 @@ function Auth() {
 
   return (
     <div className="flex min-h-screen flex-col items-center justify-center bg-background px-6 py-12">
-      <img src={logo} alt="Logo de PAWLY" width={80} height={80} className="size-16" />
+      <img src={logo.url} alt="Logo de PAWLY" width={80} height={80} className="size-16" />
       <h1 className="mt-4 text-2xl font-extrabold text-foreground">
         {modo === "registro" ? "Crear cuenta" : "Iniciar sesión"}
       </h1>

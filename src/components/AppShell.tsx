@@ -3,7 +3,7 @@ import { Compass, Home, MapPin, Moon, PlusCircle, Sun, User } from "lucide-react
 import type { ReactNode } from "react";
 import { cn } from "@/lib/utils";
 import { useTheme } from "@/lib/petnova";
-import logo from "@/assets/petnova-logo.png";
+import logo from "@/assets/pawly-logo.png.asset.json";
 
 const tabs = [
   { to: "/", label: "Inicio", icon: Home },
@@ -22,7 +22,7 @@ export function AppShell({ children }: { children: ReactNode }) {
       <header className="sticky top-0 z-20 border-b border-border/60 bg-background/85 backdrop-blur">
         <div className="mx-auto grid h-16 max-w-3xl grid-cols-[minmax(0,1fr)_auto] items-center gap-3 px-4">
           <Link to="/" className="flex min-w-0 items-center gap-2">
-            <img src={logo} alt="Logo PAWLY" width={40} height={40} className="size-9 shrink-0" />
+            <img src={logo.url} alt="Logo PAWLY" width={40} height={40} className="size-9 shrink-0" />
             <span className="truncate text-lg font-extrabold tracking-tight text-foreground">
               PET<span className="text-accent">NOVA</span>
             </span>

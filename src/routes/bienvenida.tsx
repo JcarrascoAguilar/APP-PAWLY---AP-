@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import logo from "@/assets/petnova-logo.png";
+import logo from "@/assets/pawly-logo.png.asset.json";
 
 export const Route = createFileRoute("/bienvenida")({
   head: () => ({
@@ -26,7 +26,7 @@ function Bienvenida() {
   return (
     <div className="flex min-h-screen flex-col items-center justify-center bg-background px-6 py-12 text-center">
       <img
-        src={logo}
+        src={logo.url}
         alt="Logo de PAWLY"
         width={140}
         height={140}
