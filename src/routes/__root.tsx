@@ -78,13 +78,13 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "PETNOVA — Bienestar animal" },
+      { title: "PAWLY — Bienestar animal" },
       {
         name: "description",
         content:
-          "PETNOVA conecta mascotas perdidas, encontradas y en adopción con personas que quieren ayudar.",
+          "PAWLY conecta mascotas perdidas, encontradas y en adopción con personas que quieren ayudar.",
       },
-      { name: "author", content: "PETNOVA" },
+      { name: "author", content: "PAWLY" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],

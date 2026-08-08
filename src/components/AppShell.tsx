@@ -22,7 +22,7 @@ export function AppShell({ children }: { children: ReactNode }) {
       <header className="sticky top-0 z-20 border-b border-border/60 bg-background/85 backdrop-blur">
         <div className="mx-auto grid h-16 max-w-3xl grid-cols-[minmax(0,1fr)_auto] items-center gap-3 px-4">
           <Link to="/" className="flex min-w-0 items-center gap-2">
-            <img src={logo} alt="Logo PETNOVA" width={40} height={40} className="size-9 shrink-0" />
+            <img src={logo} alt="Logo PAWLY" width={40} height={40} className="size-9 shrink-0" />
             <span className="truncate text-lg font-extrabold tracking-tight text-foreground">
               PET<span className="text-accent">NOVA</span>
             </span>

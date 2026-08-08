@@ -4,13 +4,13 @@ import { AppShell } from "@/components/AppShell";
 export const Route = createFileRoute("/publicar/")({
   head: () => ({
     meta: [
-      { title: "Publicar una mascota — PETNOVA" },
+      { title: "Publicar una mascota — PAWLY" },
       {
         name: "description",
         content:
           "Elige el tipo de publicación: mascota perdida, mascota encontrada o mascota en adopción.",
       },
-      { property: "og:title", content: "Publicar una mascota — PETNOVA" },
+      { property: "og:title", content: "Publicar una mascota — PAWLY" },
       {
         property: "og:description",
         content: "Crea tu reporte en minutos y llega a la comunidad cercana.",

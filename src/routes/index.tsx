@@ -8,13 +8,13 @@ import { usePets } from "@/lib/petnova";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "PETNOVA — Mascotas perdidas, encontradas y en adopción" },
+      { title: "PAWLY — Mascotas perdidas, encontradas y en adopción" },
       {
         name: "description",
         content:
-          "PETNOVA conecta mascotas perdidas, encontradas y en adopción con su familia. Reporta, busca y adopta en pocos pasos.",
+          "PAWLY conecta mascotas perdidas, encontradas y en adopción con su familia. Reporta, busca y adopta en pocos pasos.",
       },
-      { property: "og:title", content: "PETNOVA — Conectando mascotas con un hogar" },
+      { property: "og:title", content: "PAWLY — Conectando mascotas con un hogar" },
       {
         property: "og:description",
         content: "Reporta, busca y adopta mascotas cerca de ti. Refugios, veterinarias y alertas.",

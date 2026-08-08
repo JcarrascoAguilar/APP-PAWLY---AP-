@@ -4,13 +4,13 @@ import logo from "@/assets/petnova-logo.png";
 export const Route = createFileRoute("/bienvenida")({
   head: () => ({
     meta: [
-      { title: "Bienvenido a PETNOVA — Conectando mascotas con un hogar" },
+      { title: "Bienvenido a PAWLY — Conectando mascotas con un hogar" },
       {
         name: "description",
         content:
-          "Inicia sesión o regístrate en PETNOVA para reportar mascotas perdidas, encontradas y adoptar de forma responsable.",
+          "Inicia sesión o regístrate en PAWLY para reportar mascotas perdidas, encontradas y adoptar de forma responsable.",
       },
-      { property: "og:title", content: "Bienvenido a PETNOVA" },
+      { property: "og:title", content: "Bienvenido a PAWLY" },
       {
         property: "og:description",
         content: "Conectando mascotas con un hogar. Crea tu cuenta y únete a la comunidad.",
@@ -27,7 +27,7 @@ function Bienvenida() {
     <div className="flex min-h-screen flex-col items-center justify-center bg-background px-6 py-12 text-center">
       <img
         src={logo}
-        alt="Logo de PETNOVA"
+        alt="Logo de PAWLY"
         width={140}
         height={140}
         className="animate-fade-up size-32"

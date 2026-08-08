@@ -13,13 +13,13 @@ export const Route = createFileRoute("/auth")({
   }),
   head: () => ({
     meta: [
-      { title: "Iniciar sesión o registrarse — PETNOVA" },
+      { title: "Iniciar sesión o registrarse — PAWLY" },
       {
         name: "description",
         content:
-          "Accede a tu cuenta PETNOVA para publicar mascotas, guardar favoritos y recibir alertas cercanas.",
+          "Accede a tu cuenta PAWLY para publicar mascotas, guardar favoritos y recibir alertas cercanas.",
       },
-      { property: "og:title", content: "Acceso a PETNOVA" },
+      { property: "og:title", content: "Acceso a PAWLY" },
       {
         property: "og:description",
         content: "Crea tu cuenta y únete a la comunidad del bienestar animal.",
@@ -61,7 +61,7 @@ function Auth() {
 
   return (
     <div className="flex min-h-screen flex-col items-center justify-center bg-background px-6 py-12">
-      <img src={logo} alt="Logo de PETNOVA" width={80} height={80} className="size-16" />
+      <img src={logo} alt="Logo de PAWLY" width={80} height={80} className="size-16" />
       <h1 className="mt-4 text-2xl font-extrabold text-foreground">
         {modo === "registro" ? "Crear cuenta" : "Iniciar sesión"}
       </h1>

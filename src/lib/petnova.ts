@@ -83,7 +83,7 @@ export const seedPets: Pet[] = [
     ],
     phone: "+51 986 222 333",
     whatsapp: "51986222333",
-    owner: "Refugio PETNOVA",
+    owner: "Refugio PAWLY",
     coords: { x: 62, y: 22 },
   },
   {
@@ -191,7 +191,7 @@ export const seedPets: Pet[] = [
     location: "Parque Central, La Molina",
     date: "2026-07-10",
     description:
-      "Simba volvió a casa gracias a un vecino que lo reconoció por su publicación en PETNOVA. ¡Gracias comunidad!",
+      "Simba volvió a casa gracias a un vecino que lo reconoció por su publicación en PAWLY. ¡Gracias comunidad!",
     status: "reencuentro",
     photos: [
       "https://images.unsplash.com/photo-1633722715463-d30f4f325e24?auto=format&fit=crop&w=900&q=70",
@@ -383,7 +383,7 @@ export function useTheme() {
 export function waLink(whatsapp: string, petName: string) {
   const digits = whatsapp.replace(/\D/g, "");
   const text = encodeURIComponent(
-    `Hola, te escribo desde PETNOVA por la publicación de ${petName}.`,
+    `Hola, te escribo desde PAWLY por la publicación de ${petName}.`,
   );
   return `https://wa.me/${digits}?text=${text}`;
 }

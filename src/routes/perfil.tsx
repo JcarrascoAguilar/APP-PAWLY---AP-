@@ -17,13 +17,13 @@ import { useAuth, useFavorites, usePets, useTheme } from "@/lib/petnova";
 export const Route = createFileRoute("/perfil")({
   head: () => ({
     meta: [
-      { title: "Mi perfil — PETNOVA" },
+      { title: "Mi perfil — PAWLY" },
       {
         name: "description",
         content:
-          "Tus datos, mascotas publicadas, favoritos, reencuentros y configuración de alertas en PETNOVA.",
+          "Tus datos, mascotas publicadas, favoritos, reencuentros y configuración de alertas en PAWLY.",
       },
-      { property: "og:title", content: "Mi perfil — PETNOVA" },
+      { property: "og:title", content: "Mi perfil — PAWLY" },
       {
         property: "og:description",
         content: "Gestiona tus favoritos, publicaciones y notificaciones.",

@@ -6,13 +6,13 @@ import { speciesLabel, usePets } from "@/lib/petnova";
 export const Route = createFileRoute("/adopcion")({
   head: () => ({
     meta: [
-      { title: "Mascotas en adopción — PETNOVA" },
+      { title: "Mascotas en adopción — PAWLY" },
       {
         name: "description",
         content:
-          "Conoce perros, gatos y otras mascotas en adopción responsable con refugios verificados de PETNOVA.",
+          "Conoce perros, gatos y otras mascotas en adopción responsable con refugios verificados de PAWLY.",
       },
-      { property: "og:title", content: "Mascotas en adopción — PETNOVA" },
+      { property: "og:title", content: "Mascotas en adopción — PAWLY" },
       {
         property: "og:description",
         content: "Adopta con responsabilidad: cada mascota espera una familia.",
