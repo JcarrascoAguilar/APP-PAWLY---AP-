@@ -6,12 +6,17 @@ import {
   useRouter,
   HeadContent,
   Scripts,
+  ClientOnly,
 } from "@tanstack/react-router";
-import { useEffect, type ReactNode } from "react";
+import { useEffect, Suspense, lazy, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { Toaster } from "@/components/ui/sonner";
+
+const VoiceAssistant = lazy(() =>
+  import("@/components/VoiceAssistant").then((m) => ({ default: m.VoiceAssistant })),
+);
 
 function NotFoundComponent() {
   return (
