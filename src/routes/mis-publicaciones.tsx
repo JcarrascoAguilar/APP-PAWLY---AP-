@@ -8,16 +8,16 @@ import { usePets } from "@/lib/petnova";
 export const Route = createFileRoute("/mis-publicaciones")({
   head: () => ({
     meta: [
-      { title: "Mis publicaciones — PETNOVA" },
+      { title: "Mis publicaciones — PAWLY" },
       {
         name: "description",
         content:
           "Administra tus reportes: edita, elimina o marca una mascota como encontrada o adoptada.",
       },
-      { property: "og:title", content: "Mis publicaciones — PETNOVA" },
+      { property: "og:title", content: "Mis publicaciones — PAWLY" },
       {
         property: "og:description",
-        content: "Gestiona el estado de las mascotas que publicaste en PETNOVA.",
+        content: "Gestiona el estado de las mascotas que publicaste en PAWLY.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },

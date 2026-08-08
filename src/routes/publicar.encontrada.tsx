@@ -5,13 +5,13 @@ import { PetForm } from "@/components/PetForm";
 export const Route = createFileRoute("/publicar/encontrada")({
   head: () => ({
     meta: [
-      { title: "Publicar mascota encontrada — PETNOVA" },
+      { title: "Publicar mascota encontrada — PAWLY" },
       {
         name: "description",
         content:
           "Reporta una mascota encontrada: fotos, características, lugar y fecha del hallazgo y tu contacto.",
       },
-      { property: "og:title", content: "Publicar mascota encontrada — PETNOVA" },
+      { property: "og:title", content: "Publicar mascota encontrada — PAWLY" },
       {
         property: "og:description",
         content: "Ayuda a que una mascota regrese a casa publicando el hallazgo.",

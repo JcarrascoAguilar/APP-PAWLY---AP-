@@ -1,16 +1,16 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import logo from "@/assets/petnova-logo.png";
+import logo from "@/assets/pawly-logo.png.asset.json";
 
 export const Route = createFileRoute("/bienvenida")({
   head: () => ({
     meta: [
-      { title: "Bienvenido a PETNOVA — Conectando mascotas con un hogar" },
+      { title: "Bienvenido a PAWLY — Conectando mascotas con un hogar" },
       {
         name: "description",
         content:
-          "Inicia sesión o regístrate en PETNOVA para reportar mascotas perdidas, encontradas y adoptar de forma responsable.",
+          "Inicia sesión o regístrate en PAWLY para reportar mascotas perdidas, encontradas y adoptar de forma responsable.",
       },
-      { property: "og:title", content: "Bienvenido a PETNOVA" },
+      { property: "og:title", content: "Bienvenido a PAWLY" },
       {
         property: "og:description",
         content: "Conectando mascotas con un hogar. Crea tu cuenta y únete a la comunidad.",
@@ -26,14 +26,14 @@ function Bienvenida() {
   return (
     <div className="flex min-h-screen flex-col items-center justify-center bg-background px-6 py-12 text-center">
       <img
-        src={logo}
-        alt="Logo de PETNOVA"
+        src={logo.url}
+        alt="Logo de PAWLY"
         width={140}
         height={140}
         className="animate-fade-up size-32"
       />
       <h1 className="animate-fade-up mt-6 text-4xl font-extrabold tracking-tight text-foreground">
-        PET<span className="text-accent">NOVA</span>
+        PAW<span className="text-accent">LY</span>
       </h1>
       <p className="animate-fade-up mt-2 text-base text-muted-foreground">
         Conectando mascotas con un hogar.

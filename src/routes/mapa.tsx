@@ -8,13 +8,13 @@ import { cn } from "@/lib/utils";
 export const Route = createFileRoute("/mapa")({
   head: () => ({
     meta: [
-      { title: "Mapa de mascotas y refugios — PETNOVA" },
+      { title: "Mapa de mascotas y refugios — PAWLY" },
       {
         name: "description",
         content:
           "Visualiza en el mapa mascotas perdidas, encontradas, refugios y veterinarias cercanas.",
       },
-      { property: "og:title", content: "Mapa de mascotas y refugios — PETNOVA" },
+      { property: "og:title", content: "Mapa de mascotas y refugios — PAWLY" },
       {
         property: "og:description",
         content: "Reportes y organizaciones de rescate ubicados en tu zona.",

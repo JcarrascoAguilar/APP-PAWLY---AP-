@@ -9,13 +9,13 @@ import { cn } from "@/lib/utils";
 export const Route = createFileRoute("/explorar")({
   head: () => ({
     meta: [
-      { title: "Buscar mascotas — PETNOVA" },
+      { title: "Buscar mascotas — PAWLY" },
       {
         name: "description",
         content:
           "Busca por nombre, especie, raza, distrito o estado: mascotas perdidas, encontradas y en adopción.",
       },
-      { property: "og:title", content: "Buscar mascotas — PETNOVA" },
+      { property: "og:title", content: "Buscar mascotas — PAWLY" },
       {
         property: "og:description",
         content: "Filtra perros, gatos y más por raza, distrito y estado.",

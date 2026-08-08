@@ -19,13 +19,13 @@ import { cn } from "@/lib/utils";
 export const Route = createFileRoute("/mascota/$id")({
   head: () => ({
     meta: [
-      { title: "Detalle de la mascota — PETNOVA" },
+      { title: "Detalle de la mascota — PAWLY" },
       {
         name: "description",
         content:
-          "Galería, características, ubicación en mapa y datos de contacto del reporte publicado en PETNOVA.",
+          "Galería, características, ubicación en mapa y datos de contacto del reporte publicado en PAWLY.",
       },
-      { property: "og:title", content: "Detalle de la mascota — PETNOVA" },
+      { property: "og:title", content: "Detalle de la mascota — PAWLY" },
       {
         property: "og:description",
         content: "Información completa del reporte y contacto directo por WhatsApp.",
@@ -56,7 +56,7 @@ function Detalle() {
   const share = async () => {
     const url = typeof window !== "undefined" ? window.location.href : "";
     try {
-      if (navigator.share) await navigator.share({ title: `PETNOVA · ${pet.name}`, url });
+      if (navigator.share) await navigator.share({ title: `PAWLY · ${pet.name}`, url });
       else {
         await navigator.clipboard.writeText(url);
         toast.success("Enlace copiado");

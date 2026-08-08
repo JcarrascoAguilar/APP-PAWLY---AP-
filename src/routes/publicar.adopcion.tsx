@@ -5,13 +5,13 @@ import { PetForm } from "@/components/PetForm";
 export const Route = createFileRoute("/publicar/adopcion")({
   head: () => ({
     meta: [
-      { title: "Dar una mascota en adopción — PETNOVA" },
+      { title: "Dar una mascota en adopción — PAWLY" },
       {
         name: "description",
         content:
           "Publica una mascota en adopción responsable con fotos, tamaño, edad, ubicación y contacto.",
       },
-      { property: "og:title", content: "Dar en adopción — PETNOVA" },
+      { property: "og:title", content: "Dar en adopción — PAWLY" },
       {
         property: "og:description",
         content: "Encuentra un hogar responsable para una mascota rescatada.",

@@ -7,13 +7,13 @@ import { usePets } from "@/lib/petnova";
 export const Route = createFileRoute("/reencuentros")({
   head: () => ({
     meta: [
-      { title: "Reencuentros — PETNOVA" },
+      { title: "Reencuentros — PAWLY" },
       {
         name: "description",
         content:
-          "Historias felices: mascotas que ya regresaron con sus familias gracias a la comunidad PETNOVA.",
+          "Historias felices: mascotas que ya regresaron con sus familias gracias a la comunidad PAWLY.",
       },
-      { property: "og:title", content: "Reencuentros — PETNOVA" },
+      { property: "og:title", content: "Reencuentros — PAWLY" },
       {
         property: "og:description",
         content: "Mascotas encontradas que volvieron a casa. ¡Gracias comunidad!",
