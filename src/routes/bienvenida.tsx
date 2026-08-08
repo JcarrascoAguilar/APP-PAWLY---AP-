@@ -33,7 +33,7 @@ function Bienvenida() {
         className="animate-fade-up size-32"
       />
       <h1 className="animate-fade-up mt-6 text-4xl font-extrabold tracking-tight text-foreground">
-        PET<span className="text-accent">NOVA</span>
+        PAW<span className="text-accent">LY</span>
       </h1>
       <p className="animate-fade-up mt-2 text-base text-muted-foreground">
         Conectando mascotas con un hogar.

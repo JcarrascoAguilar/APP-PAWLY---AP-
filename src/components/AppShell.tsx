@@ -24,7 +24,7 @@ export function AppShell({ children }: { children: ReactNode }) {
           <Link to="/" className="flex min-w-0 items-center gap-2">
             <img src={logo.url} alt="Logo PAWLY" width={40} height={40} className="size-9 shrink-0" />
             <span className="truncate text-lg font-extrabold tracking-tight text-foreground">
-              PET<span className="text-accent">NOVA</span>
+              PAW<span className="text-accent">LY</span>
             </span>
           </Link>
           <div className="flex shrink-0 items-center gap-2">
