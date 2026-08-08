@@ -6,12 +6,17 @@ import {
   useRouter,
   HeadContent,
   Scripts,
+  ClientOnly,
 } from "@tanstack/react-router";
-import { useEffect, type ReactNode } from "react";
+import { useEffect, Suspense, lazy, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { Toaster } from "@/components/ui/sonner";
+
+const VoiceAssistant = lazy(() =>
+  import("@/components/VoiceAssistant").then((m) => ({ default: m.VoiceAssistant })),
+);
 
 function NotFoundComponent() {
   return (
@@ -129,6 +134,11 @@ function RootComponent() {
     <QueryClientProvider client={queryClient}>
       {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
       <Outlet />
+      <ClientOnly>
+        <Suspense fallback={null}>
+          <VoiceAssistant />
+        </Suspense>
+      </ClientOnly>
       <Toaster position="top-center" />
     </QueryClientProvider>
   );
