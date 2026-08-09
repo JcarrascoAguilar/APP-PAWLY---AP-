@@ -24,44 +24,46 @@ const VoiceAssistantWidget = () => {
 
   const crearPublicacion = React.useCallback(
     (status: PetStatus, params: Record<string, unknown>) => {
-      const name = clean(params.name ?? params.nombre);
-      const district = clean(params.district ?? params.distrito);
-      const phone = clean(params.phone ?? params.telefono);
+      const pick = (...keys: string[]) => keys.map((k) => params[k]).find((v) => clean(v));
+      const name = clean(pick('name', 'nombre'));
+      const district = clean(pick('district', 'distrito'));
+      const phone = clean(pick('phone', 'telefono'));
       if (!name || !district || !phone) {
         return 'Faltan datos: necesito nombre de la mascota, distrito y teléfono de contacto.';
       }
-      const whatsapp = clean(params.whatsapp, phone).replace(/\D/g, '');
-      const speciesRaw = clean(params.species ?? params.especie, 'perro').toLowerCase();
+      const whatsapp = clean(pick('whatsapp'), phone).replace(/\D/g, '');
+      const speciesRaw = clean(pick('species', 'especie'), 'perro').toLowerCase();
       const species: Species =
         speciesRaw.includes('gat') ? 'gato' : speciesRaw.includes('perr') ? 'perro' : 'otro';
-      const sizeRaw = clean(params.size ?? params.tamano ?? params.tamaño, 'mediano').toLowerCase();
+      const sizeRaw = clean(pick('size', 'tamano', 'tamaño'), 'mediano').toLowerCase();
       const size = sizeRaw.startsWith('peq')
         ? ('pequeño' as const)
         : sizeRaw.startsWith('gran')
           ? ('grande' as const)
           : ('mediano' as const);
-      const sex = clean(params.sex ?? params.sexo, 'macho').toLowerCase().startsWith('h')
+      const sex = clean(pick('sex', 'sexo'), 'macho').toLowerCase().startsWith('h')
         ? ('hembra' as const)
         : ('macho' as const);
 
       addPetRef.current({
         name,
         species,
-        breed: clean(params.breed ?? params.raza, 'Mestizo'),
-        age: clean(params.age ?? params.edad, 'Sin especificar'),
+        breed: clean(pick('breed', 'raza'), 'Mestizo'),
+        age: clean(pick('age', 'edad'), 'Sin especificar'),
         sex,
         size,
-        color: clean(params.color, 'Sin especificar'),
+        color: clean(pick('color'), 'Sin especificar'),
         district,
-        location: clean(params.location ?? params.ubicacion, district),
-        date: clean(params.date ?? params.fecha, new Date().toISOString().slice(0, 10)),
-        description: clean(params.description ?? params.descripcion, 'Publicación creada con Nova.'),
+        location: clean(pick('location', 'ubicacion'), district),
+        date: clean(pick('date', 'fecha'), new Date().toISOString().slice(0, 10)),
+        description: clean(pick('description', 'descripcion'), 'Publicación creada con Nova.'),
         status,
         photos: [],
         phone,
         whatsapp,
-        owner: clean(params.owner ?? params.dueno, 'Usuario PAWLY'),
+        owner: clean(pick('owner', 'dueno'), 'Usuario PAWLY'),
       });
+
 
       const label =
         status === 'perdido' ? 'perdida' : status === 'encontrado' ? 'encontrada' : 'en adopción';
