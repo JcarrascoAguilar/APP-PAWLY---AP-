@@ -1,10 +1,15 @@
 import React from 'react';
 import { useConversation, ConversationProvider } from '@elevenlabs/react';
 import { Mic, MicOff, MessageCircle, Send, Volume2, X, Loader2 } from 'lucide-react';
+import { toast } from 'sonner';
+import { usePets, type PetStatus, type Species } from '@/lib/petnova';
 
 const AGENT_ID = 'agent_8101kzhqh94geh6bqm1pjvjp3c69';
 
 type ChatMessage = { id: string; role: 'user' | 'agent'; text: string };
+
+const clean = (v: unknown, fallback = '') =>
+  typeof v === 'string' && v.trim() ? v.trim().slice(0, 200) : fallback;
 
 const VoiceAssistantWidget = () => {
   const [open, setOpen] = React.useState(false);
@@ -13,8 +18,68 @@ const VoiceAssistantWidget = () => {
   const [input, setInput] = React.useState('');
   const [messages, setMessages] = React.useState<ChatMessage[]>([]);
   const listRef = React.useRef<HTMLDivElement>(null);
+  const { addPet } = usePets();
+  const addPetRef = React.useRef(addPet);
+  addPetRef.current = addPet;
+
+  const crearPublicacion = React.useCallback(
+    (status: PetStatus, params: Record<string, unknown>) => {
+      const name = clean(params.name ?? params.nombre);
+      const district = clean(params.district ?? params.distrito);
+      const phone = clean(params.phone ?? params.telefono);
+      if (!name || !district || !phone) {
+        return 'Faltan datos: necesito nombre de la mascota, distrito y teléfono de contacto.';
+      }
+      const whatsapp = clean(params.whatsapp, phone).replace(/\D/g, '');
+      const speciesRaw = clean(params.species ?? params.especie, 'perro').toLowerCase();
+      const species: Species =
+        speciesRaw.includes('gat') ? 'gato' : speciesRaw.includes('perr') ? 'perro' : 'otro';
+      const sizeRaw = clean(params.size ?? params.tamano ?? params.tamaño, 'mediano').toLowerCase();
+      const size = sizeRaw.startsWith('peq')
+        ? ('pequeño' as const)
+        : sizeRaw.startsWith('gran')
+          ? ('grande' as const)
+          : ('mediano' as const);
+      const sex = clean(params.sex ?? params.sexo, 'macho').toLowerCase().startsWith('h')
+        ? ('hembra' as const)
+        : ('macho' as const);
+
+      addPetRef.current({
+        name,
+        species,
+        breed: clean(params.breed ?? params.raza, 'Mestizo'),
+        age: clean(params.age ?? params.edad, 'Sin especificar'),
+        sex,
+        size,
+        color: clean(params.color, 'Sin especificar'),
+        district,
+        location: clean(params.location ?? params.ubicacion, district),
+        date: clean(params.date ?? params.fecha, new Date().toISOString().slice(0, 10)),
+        description: clean(params.description ?? params.descripcion, 'Publicación creada con Nova.'),
+        status,
+        photos: [],
+        phone,
+        whatsapp,
+        owner: clean(params.owner ?? params.dueno, 'Usuario PAWLY'),
+      });
+
+      const label =
+        status === 'perdido' ? 'perdida' : status === 'encontrado' ? 'encontrada' : 'en adopción';
+      toast.success(`Nova publicó a ${name} (${label})`);
+      return `Publicación creada para ${name} como mascota ${label} en ${district}.`;
+    },
+    [],
+  );
 
   const conversation = useConversation({
+    clientTools: {
+      publicar_mascota_perdida: (params: Record<string, unknown>) =>
+        crearPublicacion('perdido', params ?? {}),
+      publicar_mascota_encontrada: (params: Record<string, unknown>) =>
+        crearPublicacion('encontrado', params ?? {}),
+      publicar_mascota_adopcion: (params: Record<string, unknown>) =>
+        crearPublicacion('adopcion', params ?? {}),
+    },
     onConnect: () => console.log('Nova conectada'),
     onDisconnect: () => {
       console.log('Nova desconectada');
@@ -33,6 +98,7 @@ const VoiceAssistantWidget = () => {
       ]);
     },
   });
+
 
   const isConnected = conversation.status === 'connected';
 
