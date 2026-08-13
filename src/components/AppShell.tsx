@@ -20,17 +20,19 @@ export function AppShell({ children }: { children: ReactNode }) {
   return (
     <div className="min-h-screen bg-background">
       <header className="sticky top-0 z-20 border-b border-border/60 bg-background/85 backdrop-blur">
-        <div className="mx-auto grid h-16 max-w-3xl grid-cols-[minmax(0,1fr)_auto] items-center gap-3 px-4">
-          <Link to="/" className="flex min-w-0 items-center gap-2">
-            <img src={logo.url} alt="Logo PAWLY" width={40} height={40} className="size-9 shrink-0" />
-            <span className="truncate text-lg font-extrabold tracking-tight text-foreground">
+        <div className="mx-auto grid h-[4.5rem] max-w-3xl grid-cols-[minmax(0,1fr)_auto] items-center gap-4 px-5">
+          <Link to="/" className="flex min-w-0 items-center gap-3">
+            <span className="flex size-11 shrink-0 items-center justify-center rounded-2xl bg-secondary/70 p-1.5">
+              <img src={logo.url} alt="Logo PAWLY" width={40} height={40} className="size-full object-contain" />
+            </span>
+            <span className="truncate text-[1.35rem] font-extrabold leading-none tracking-[0.02em] text-foreground">
               PAW<span className="text-accent">LY</span>
             </span>
           </Link>
-          <div className="flex shrink-0 items-center gap-2">
+          <div className="flex shrink-0 items-center gap-2.5">
             <Link
               to="/reencuentros"
-              className="rounded-full border border-border px-3 py-1.5 text-xs font-semibold text-muted-foreground transition-colors hover:text-foreground"
+              className="rounded-full border border-border bg-card px-3.5 py-2 text-xs font-semibold text-muted-foreground transition-colors hover:border-primary/40 hover:text-foreground"
             >
               Reencuentros
             </Link>
@@ -38,7 +40,7 @@ export function AppShell({ children }: { children: ReactNode }) {
               type="button"
               onClick={toggle}
               aria-label="Cambiar tema"
-              className="flex size-9 items-center justify-center rounded-full border border-border text-muted-foreground transition-colors hover:text-foreground"
+              className="flex size-10 items-center justify-center rounded-full border border-border bg-card text-muted-foreground transition-colors hover:border-primary/40 hover:text-foreground"
             >
               {dark ? <Sun className="size-4" /> : <Moon className="size-4" />}
             </button>
@@ -46,7 +48,8 @@ export function AppShell({ children }: { children: ReactNode }) {
         </div>
       </header>
 
-      <main className="mx-auto max-w-3xl px-4 pb-28 pt-5">{children}</main>
+      <main className="mx-auto max-w-3xl px-5 pb-28 pt-6">{children}</main>
+
 
       <nav className="fixed inset-x-0 bottom-0 z-20 border-t border-border/60 bg-background/95 backdrop-blur">
         <div className="mx-auto flex max-w-3xl items-stretch justify-between px-2 py-2">
