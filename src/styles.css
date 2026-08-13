@@ -145,56 +145,56 @@
 
 /* PAWLY brand tokens — inspirados en el logo (teal, naranja, amarillo, carbón) */
 :root {
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.28 0.008 60);
-  --card: oklch(0.98 0.008 90);
-  --card-foreground: oklch(0.28 0.008 60);
+  --background: oklch(0.985 0.008 85);
+  --foreground: oklch(0.26 0.012 60);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.26 0.012 60);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.28 0.008 60);
-  --primary: oklch(0.63 0.11 210);
-  --primary-foreground: oklch(1 0 0);
-  --secondary: oklch(0.95 0.035 90);
+  --popover-foreground: oklch(0.26 0.012 60);
+  --primary: oklch(0.58 0.11 212);
+  --primary-foreground: oklch(0.995 0 0);
+  --secondary: oklch(0.955 0.03 88);
   --secondary-foreground: oklch(0.35 0.05 70);
-  --muted: oklch(0.965 0.01 90);
-  --muted-foreground: oklch(0.55 0.02 70);
-  --accent: oklch(0.68 0.15 47);
-  --accent-foreground: oklch(1 0 0);
-  --brand-yellow: oklch(0.83 0.15 84);
-  --brand-yellow-foreground: oklch(0.28 0.008 60);
-  --brand-teal: oklch(0.76 0.1 209);
-  --success: oklch(0.68 0.17 145);
-  --success-foreground: oklch(1 0 0);
-  --destructive: oklch(0.6 0.21 25);
+  --muted: oklch(0.955 0.012 88);
+  --muted-foreground: oklch(0.52 0.022 70);
+  --accent: oklch(0.66 0.16 45);
+  --accent-foreground: oklch(0.995 0 0);
+  --brand-yellow: oklch(0.84 0.15 84);
+  --brand-yellow-foreground: oklch(0.26 0.012 60);
+  --brand-teal: oklch(0.74 0.1 209);
+  --success: oklch(0.62 0.16 148);
+  --success-foreground: oklch(0.995 0 0);
+  --destructive: oklch(0.58 0.2 25);
   --destructive-foreground: oklch(0.99 0.005 250);
-  --border: oklch(0.92 0.012 85);
-  --input: oklch(0.92 0.012 85);
-  --ring: oklch(0.63 0.11 210);
+  --border: oklch(0.905 0.014 85);
+  --input: oklch(0.905 0.014 85);
+  --ring: oklch(0.58 0.11 212);
   --radius: 1rem;
 }
 
 .dark {
-  --background: oklch(0.21 0.015 240);
+  --background: oklch(0.19 0.017 245);
   --foreground: oklch(0.97 0.005 90);
-  --card: oklch(0.26 0.018 240);
+  --card: oklch(0.245 0.02 245);
   --card-foreground: oklch(0.97 0.005 90);
-  --popover: oklch(0.26 0.018 240);
+  --popover: oklch(0.245 0.02 245);
   --popover-foreground: oklch(0.97 0.005 90);
-  --primary: oklch(0.76 0.1 209);
-  --primary-foreground: oklch(0.2 0.02 240);
-  --secondary: oklch(0.32 0.03 80);
+  --primary: oklch(0.78 0.1 209);
+  --primary-foreground: oklch(0.19 0.02 245);
+  --secondary: oklch(0.3 0.028 80);
   --secondary-foreground: oklch(0.95 0.02 90);
-  --muted: oklch(0.3 0.02 240);
-  --muted-foreground: oklch(0.76 0.02 85);
-  --accent: oklch(0.7 0.15 47);
+  --muted: oklch(0.28 0.02 245);
+  --muted-foreground: oklch(0.74 0.02 85);
+  --accent: oklch(0.72 0.15 47);
   --accent-foreground: oklch(0.18 0.02 60);
-  --brand-yellow: oklch(0.83 0.15 84);
+  --brand-yellow: oklch(0.84 0.15 84);
   --brand-yellow-foreground: oklch(0.22 0.01 60);
-  --brand-teal: oklch(0.76 0.1 209);
-  --success: oklch(0.7 0.16 145);
+  --brand-teal: oklch(0.78 0.1 209);
+  --success: oklch(0.72 0.16 148);
   --success-foreground: oklch(0.18 0.02 240);
-  --border: oklch(1 0 0 / 12%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.76 0.1 209);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 14%);
+  --ring: oklch(0.78 0.1 209);
 }
 
 @theme inline {
@@ -204,7 +204,9 @@
   --color-brand-yellow-foreground: var(--brand-yellow-foreground);
   --color-brand-teal: var(--brand-teal);
   --font-sans: "Poppins", "Inter", ui-sans-serif, system-ui, sans-serif;
+  --shadow-soft: 0 1px 2px oklch(0.26 0.012 60 / 0.04), 0 8px 24px -12px oklch(0.26 0.012 60 / 0.18);
 }
+
 
 
 @keyframes petnova-fade-up {
