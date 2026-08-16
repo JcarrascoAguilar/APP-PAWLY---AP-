@@ -41,6 +41,7 @@ export default defineTool({
   inputSchema: {
     tipo: z.enum(["perdido", "encontrado", "adopcion"]).describe("Tipo de publicación."),
   },
+  outputSchema: { tipo: z.string(), ruta: z.string(), pasos: z.array(z.string()) },
   annotations: { readOnlyHint: true, idempotentHint: true, openWorldHint: false },
   handler: ({ tipo }) => {
     const guide = guides[tipo];

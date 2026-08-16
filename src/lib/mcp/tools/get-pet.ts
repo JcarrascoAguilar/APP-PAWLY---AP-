@@ -7,6 +7,7 @@ export default defineTool({
   title: "Ver mascota",
   description: "Devuelve la ficha completa de una mascota del catálogo público de PAWLY por su id.",
   inputSchema: { id: z.string().describe("Id de la mascota, tal como aparece en list_pets.") },
+  outputSchema: { pet: z.record(z.string(), z.unknown()) },
   annotations: { readOnlyHint: true, idempotentHint: true, openWorldHint: false },
   handler: ({ id }) => {
     const pet = seedPets.find((p) => p.id === id.trim());

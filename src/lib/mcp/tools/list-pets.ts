@@ -15,6 +15,7 @@ export default defineTool({
     species: z.enum(["perro", "gato", "otro"]).optional().describe("Filtrar por especie."),
     district: z.string().optional().describe("Filtrar por distrito (coincidencia parcial)."),
   },
+  outputSchema: { count: z.number(), pets: z.array(z.record(z.string(), z.unknown())) },
   annotations: { readOnlyHint: true, idempotentHint: true, openWorldHint: false },
   handler: ({ status, species, district }) => {
     const d = district?.trim().toLowerCase();
