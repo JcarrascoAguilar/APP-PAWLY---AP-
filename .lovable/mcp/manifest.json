@@ -1,0 +1,169 @@
+{
+  "version": 1,
+  "sdk_version": "0.26.2",
+  "path": "/mcp",
+  "auth": {
+    "type": "none"
+  },
+  "mcp": {
+    "server": {
+      "name": "pawly",
+      "version": "0.1.0",
+      "title": "PAWLY"
+    },
+    "tools": [
+      {
+        "name": "list_pets",
+        "title": "Listar mascotas",
+        "description": "Lista las mascotas publicadas en el catálogo público de PAWLY (perdidas, encontradas, en adopción o reencuentros), con filtros opcionales.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {
+            "status": {
+              "description": "Filtrar por estado de la publicación.",
+              "type": "string",
+              "enum": [
+                "perdido",
+                "encontrado",
+                "adopcion",
+                "reencuentro"
+              ]
+            },
+            "species": {
+              "description": "Filtrar por especie.",
+              "type": "string",
+              "enum": [
+                "perro",
+                "gato",
+                "otro"
+              ]
+            },
+            "district": {
+              "description": "Filtrar por distrito (coincidencia parcial).",
+              "type": "string"
+            }
+          }
+        },
+        "outputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {
+            "count": {
+              "type": "number"
+            },
+            "pets": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "propertyNames": {
+                  "type": "string"
+                },
+                "additionalProperties": {}
+              }
+            }
+          },
+          "required": [
+            "count",
+            "pets"
+          ]
+        }
+      },
+      {
+        "name": "get_pet",
+        "title": "Ver mascota",
+        "description": "Devuelve la ficha completa de una mascota del catálogo público de PAWLY por su id.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "Id de la mascota, tal como aparece en list_pets."
+            }
+          },
+          "required": [
+            "id"
+          ]
+        },
+        "outputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {
+            "pet": {
+              "type": "object",
+              "propertyNames": {
+                "type": "string"
+              },
+              "additionalProperties": {}
+            }
+          },
+          "required": [
+            "pet"
+          ]
+        }
+      },
+      {
+        "name": "report_guide",
+        "title": "Guía para publicar",
+        "description": "Explica paso a paso cómo publicar en PAWLY una mascota perdida, encontrada o en adopción, e indica la ruta de la app.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {
+            "tipo": {
+              "type": "string",
+              "enum": [
+                "perdido",
+                "encontrado",
+                "adopcion"
+              ],
+              "description": "Tipo de publicación."
+            }
+          },
+          "required": [
+            "tipo"
+          ]
+        },
+        "outputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {
+            "tipo": {
+              "type": "string"
+            },
+            "ruta": {
+              "type": "string"
+            },
+            "pasos": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "required": [
+            "tipo",
+            "ruta",
+            "pasos"
+          ]
+        }
+      }
+    ]
+  }
+}
